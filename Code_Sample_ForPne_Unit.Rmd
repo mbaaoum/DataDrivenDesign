@@ -1,0 +1,1946 @@
+---
+title: "E4C_Project"
+author: "MohammedBaaoum"
+date: '2022-06-01'
+output:
+  word_document: default
+  html_document: default
+---
+
+```{r}
+library(dplyr)
+#devtools::install_github("jennybc/gapminder")
+library(gapminder)
+library(naniar)
+ library(Hmisc)
+library(imputeTS)
+```
+
+
+
+#Upload data for unit 1029 April
+```{r}
+d_1029_4_1_4_1_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1029_CSV/1029_4_1_4_1_2022.csv")
+d_1029_4_2_4_2_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1029_CSV/1029_4_2_4_2_2022.csv")
+d_1029_4_3_4_3_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1029_CSV/1029_4_3_4_3_2022.csv")
+d_1029_4_4_4_4_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1029_CSV/1029_4_4_4_4_2022.csv")
+d_1029_4_5_4_5_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1029_CSV/1029_4_5_4_5_2022.csv")
+d_1029_4_6_4_6_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1029_CSV/1029_4_6_4_6_2022.csv")
+d_1029_4_7_4_7_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1029_CSV/1029_4_7_4_7_2022.csv")
+d_1029_4_8_4_8_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1029_CSV/1029_4_8_4_8_2022.csv")
+d_1029_4_9_4_9_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1029_CSV/1029_4_9_4_9_2022.csv")
+d_1029_4_10_4_10_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1029_CSV/1029_4_10_4_10_2022.csv")
+d_1029_4_11_4_11_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1029_CSV/1029_4_11_4_11_2022.csv")
+d_1029_4_12_4_12_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1029_CSV/1029_4_12_4_12_2022.csv")
+d_1029_4_13_4_13_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1029_CSV/1029_4_13_4_13_2022.csv")
+d_1029_4_14_4_14_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1029_CSV/1029_4_14_4_14_2022.csv")
+d_1029_4_15_4_15_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1029_CSV/1029_4_15_4_15_2022.csv")
+d_1029_4_16_4_16_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1029_CSV/1029_4_16_4_16_2022.csv")
+d_1029_4_17_4_17_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1029_CSV/1029_4_17_4_17_2022.csv")
+d_1029_4_18_4_18_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1029_CSV/1029_4_18_4_18_2022.csv")
+d_1029_4_19_4_19_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1029_CSV/1029_4_19_4_19_2022.csv")
+d_1029_4_20_4_20_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1029_CSV/1029_4_20_4_20_2022.csv")
+d_1029_4_21_4_21_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1029_CSV/1029_4_21_4_21_2022.csv")
+d_1029_4_22_4_22_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1029_CSV/1029_4_22_4_22_2022.csv")
+d_1029_4_23_4_23_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1029_CSV/1029_4_23_4_23_2022.csv")
+d_1029_4_24_4_24_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1029_CSV/1029_4_24_4_24_2022.csv")
+d_1029_4_25_4_25_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1029_CSV/1029_4_25_4_25_2022.csv")
+d_1029_4_26_4_26_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1029_CSV/1029_4_26_4_26_2022.csv")
+d_1029_4_27_4_27_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1029_CSV/1029_4_27_4_27_2022.csv")
+d_1029_4_28_4_28_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1029_CSV/1029_4_28_4_28_2022.csv")
+
+d_1029_4_29_4_29_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1029_CSV/1029_4_29_4_29_2022.csv")
+d_1029_4_30_4_30_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1029_CSV/1029_4_30_4_30_2022.csv")
+```
+
+```{r}
+names(d_1029_4_26_4_26_2022)
+```
+
+Variable of intrest for now
+[3]"X1029.Battery.Voltage" 
+[24] "X1029.Inverter.output.Total.power" 
+
+
+```{r}
+str(d_1029_4_26_4_26_2022)
+```
+
+```{r}
+head (d_1029_4_26_4_26_2022)
+```
+
+
+
+
+
+#select only the variables we want from the data set. 
+
+```{r}
+#day1
+d_selct_1029_4_1_4_1_2022<- select(d_1029_4_1_4_1_2022, c(X1029.Battery.Voltage, X1029.Inverter.output.Total.power, X1029.Battery.temperature, X1029.Battery.output.power, X1029.Battery.output.current, X1029.PV1.input.power, X1029.PV2.input.power))
+
+#day2
+d_selct_1029_4_2_4_2_2022<- select(d_1029_4_2_4_2_2022, c(X1029.Battery.Voltage, X1029.Inverter.output.Total.power, X1029.Battery.temperature, X1029.Battery.output.power, X1029.Battery.output.current, X1029.PV1.input.power, X1029.PV2.input.power))
+
+#day3
+d_selct_1029_4_3_4_3_2022<- select(d_1029_4_3_4_3_2022, c(X1029.Battery.Voltage, X1029.Inverter.output.Total.power, X1029.Battery.temperature, X1029.Battery.output.power, X1029.Battery.output.current, X1029.PV1.input.power, X1029.PV2.input.power))
+
+#day4
+d_selct_1029_4_4_4_4_2022<- select(d_1029_4_4_4_4_2022, c(X1029.Battery.Voltage, X1029.Inverter.output.Total.power, X1029.Battery.temperature, X1029.Battery.output.power, X1029.Battery.output.current, X1029.PV1.input.power, X1029.PV2.input.power))
+
+
+#day5
+
+d_selct_1029_4_5_4_5_2022<- select(d_1029_4_5_4_5_2022, c(X1029.Battery.Voltage, X1029.Inverter.output.Total.power, X1029.Battery.temperature, X1029.Battery.output.power, X1029.Battery.output.current, X1029.PV1.input.power, X1029.PV2.input.power))
+
+#day6
+d_selct_1029_4_6_4_6_2022<- select(d_1029_4_6_4_6_2022, c(X1029.Battery.Voltage, X1029.Inverter.output.Total.power, X1029.Battery.temperature, X1029.Battery.output.power, X1029.Battery.output.current, X1029.PV1.input.power, X1029.PV2.input.power))
+
+
+
+#day7
+d_selct_1029_4_7_4_7_2022<- select(d_1029_4_7_4_7_2022, c(X1029.Battery.Voltage, X1029.Inverter.output.Total.power, X1029.Battery.temperature, X1029.Battery.output.power, X1029.Battery.output.current, X1029.PV1.input.power, X1029.PV2.input.power))
+
+
+#day8
+d_selct_1029_4_8_4_8_2022<- select(d_1029_4_8_4_8_2022, c(X1029.Battery.Voltage, X1029.Inverter.output.Total.power, X1029.Battery.temperature, X1029.Battery.output.power, X1029.Battery.output.current, X1029.PV1.input.power, X1029.PV2.input.power))
+
+#day9
+d_selct_1029_4_9_4_9_2022<- select(d_1029_4_9_4_9_2022, c(X1029.Battery.Voltage, X1029.Inverter.output.Total.power, X1029.Battery.temperature, X1029.Battery.output.power, X1029.Battery.output.current, X1029.PV1.input.power, X1029.PV2.input.power))
+
+
+#day10
+d_selct_1029_4_10_4_10_2022<- select(d_1029_4_10_4_10_2022, c(X1029.Battery.Voltage, X1029.Inverter.output.Total.power, X1029.Battery.temperature, X1029.Battery.output.power, X1029.Battery.output.current, X1029.PV1.input.power, X1029.PV2.input.power))
+
+
+#day11
+d_selct_1029_4_11_4_11_2022<- select(d_1029_4_11_4_11_2022, c(X1029.Battery.Voltage, X1029.Inverter.output.Total.power, X1029.Battery.temperature, X1029.Battery.output.power, X1029.Battery.output.current, X1029.PV1.input.power, X1029.PV2.input.power))
+
+
+#day12
+d_selct_1029_4_12_4_12_2022<- select(d_1029_4_12_4_12_2022, c(X1029.Battery.Voltage, X1029.Inverter.output.Total.power, X1029.Battery.temperature, X1029.Battery.output.power, X1029.Battery.output.current, X1029.PV1.input.power, X1029.PV2.input.power))
+
+
+#day13
+d_selct_1029_4_13_4_13_2022<- select(d_1029_4_13_4_13_2022, c(X1029.Battery.Voltage, X1029.Inverter.output.Total.power, X1029.Battery.temperature, X1029.Battery.output.power, X1029.Battery.output.current, X1029.PV1.input.power, X1029.PV2.input.power))
+
+#day14
+d_selct_1029_4_14_4_14_2022<- select(d_1029_4_14_4_14_2022, c(X1029.Battery.Voltage, X1029.Inverter.output.Total.power, X1029.Battery.temperature, X1029.Battery.output.power, X1029.Battery.output.current, X1029.PV1.input.power, X1029.PV2.input.power))
+
+
+#day15
+d_selct_1029_4_15_4_15_2022<- select(d_1029_4_15_4_15_2022, c(X1029.Battery.Voltage, X1029.Inverter.output.Total.power, X1029.Battery.temperature, X1029.Battery.output.power, X1029.Battery.output.current, X1029.PV1.input.power, X1029.PV2.input.power))
+
+
+#day16
+d_selct_1029_4_16_4_16_2022<- select(d_1029_4_16_4_16_2022, c(X1029.Battery.Voltage, X1029.Inverter.output.Total.power, X1029.Battery.temperature, X1029.Battery.output.power, X1029.Battery.output.current, X1029.PV1.input.power, X1029.PV2.input.power))
+
+
+#day17
+d_selct_1029_4_17_4_17_2022<- select(d_1029_4_17_4_17_2022, c(X1029.Battery.Voltage, X1029.Inverter.output.Total.power, X1029.Battery.temperature, X1029.Battery.output.power, X1029.Battery.output.current, X1029.PV1.input.power, X1029.PV2.input.power))
+
+
+#day18
+d_selct_1029_4_18_4_18_2022<- select(d_1029_4_18_4_18_2022, c(X1029.Battery.Voltage, X1029.Inverter.output.Total.power, X1029.Battery.temperature, X1029.Battery.output.power, X1029.Battery.output.current, X1029.PV1.input.power, X1029.PV2.input.power))
+
+
+#day19
+d_selct_1029_4_19_4_19_2022<- select(d_1029_4_19_4_19_2022, c(X1029.Battery.Voltage, X1029.Inverter.output.Total.power, X1029.Battery.temperature, X1029.Battery.output.power, X1029.Battery.output.current, X1029.PV1.input.power, X1029.PV2.input.power))
+
+
+#day20
+d_selct_1029_4_20_4_20_2022<- select(d_1029_4_20_4_20_2022, c(X1029.Battery.Voltage, X1029.Inverter.output.Total.power, X1029.Battery.temperature, X1029.Battery.output.power, X1029.Battery.output.current, X1029.PV1.input.power, X1029.PV2.input.power))
+
+
+#day21
+d_selct_1029_4_21_4_21_2022<- select(d_1029_4_21_4_21_2022, c(X1029.Battery.Voltage, X1029.Inverter.output.Total.power, X1029.Battery.temperature, X1029.Battery.output.power, X1029.Battery.output.current, X1029.PV1.input.power, X1029.PV2.input.power))
+
+
+#day22
+d_selct_1029_4_22_4_22_2022<- select(d_1029_4_22_4_22_2022, c(X1029.Battery.Voltage, X1029.Inverter.output.Total.power, X1029.Battery.temperature, X1029.Battery.output.power, X1029.Battery.output.current, X1029.PV1.input.power, X1029.PV2.input.power))
+
+
+#day23
+d_selct_1029_4_23_4_23_2022<- select(d_1029_4_23_4_23_2022, c(X1029.Battery.Voltage, X1029.Inverter.output.Total.power, X1029.Battery.temperature, X1029.Battery.output.power, X1029.Battery.output.current, X1029.PV1.input.power, X1029.PV2.input.power))
+
+#day24
+d_selct_1029_4_24_4_24_2022<- select(d_1029_4_24_4_24_2022, c(X1029.Battery.Voltage, X1029.Inverter.output.Total.power, X1029.Battery.temperature, X1029.Battery.output.power, X1029.Battery.output.current, X1029.PV1.input.power, X1029.PV2.input.power))
+
+#day25
+d_selct_1029_4_25_4_25_2022<- select(d_1029_4_25_4_25_2022, c(X1029.Battery.Voltage, X1029.Inverter.output.Total.power, X1029.Battery.temperature, X1029.Battery.output.power, X1029.Battery.output.current, X1029.PV1.input.power, X1029.PV2.input.power))
+
+#day26
+d_selct_1029_4_26_4_26_2022<- select(d_1029_4_26_4_26_2022, c(X1029.Battery.Voltage, X1029.Inverter.output.Total.power, X1029.Battery.temperature, X1029.Battery.output.power, X1029.Battery.output.current, X1029.PV1.input.power, X1029.PV2.input.power))
+
+#day27
+d_selct_1029_4_27_4_27_2022<- select(d_1029_4_27_4_27_2022, c(X1029.Battery.Voltage, X1029.Inverter.output.Total.power, X1029.Battery.temperature, X1029.Battery.output.power, X1029.Battery.output.current, X1029.PV1.input.power, X1029.PV2.input.power))
+
+#day28
+d_selct_1029_4_28_4_28_2022<- select(d_1029_4_28_4_28_2022, c(X1029.Battery.Voltage, X1029.Inverter.output.Total.power, X1029.Battery.temperature, X1029.Battery.output.power, X1029.Battery.output.current, X1029.PV1.input.power, X1029.PV2.input.power))
+
+
+#day29
+d_selct_1029_4_29_4_29_2022<- select(d_1029_4_29_4_29_2022, c(X1029.Battery.Voltage, X1029.Inverter.output.Total.power, X1029.Battery.temperature, X1029.Battery.output.power, X1029.Battery.output.current, X1029.PV1.input.power, X1029.PV2.input.power))
+
+
+#day30
+d_selct_1029_4_30_4_30_2022<- select(d_1029_4_30_4_30_2022, c(X1029.Battery.Voltage, X1029.Inverter.output.Total.power, X1029.Battery.temperature, X1029.Battery.output.power, X1029.Battery.output.current, X1029.PV1.input.power, X1029.PV2.input.power))
+
+```
+
+
+count the frequnce of missing data 
+```{r}
+d_selct_1029_4_1_4_1_2022 %>% na_if("-8888") %>%
+        summarise(across(everything(), list(sum=~sum(is.na(.x)), mean=~mean(is.na(.x)))))
+d_selct_1029_4_2_4_2_2022 %>% na_if("-8888") %>%
+        summarise(across(everything(), list(sum=~sum(is.na(.x)), mean=~mean(is.na(.x)))))
+d_selct_1029_4_3_4_3_2022 %>% na_if("-8888") %>%
+        summarise(across(everything(), list(sum=~sum(is.na(.x)), mean=~mean(is.na(.x)))))
+d_selct_1029_4_4_4_4_2022 %>% na_if("-8888") %>%
+        summarise(across(everything(), list(sum=~sum(is.na(.x)), mean=~mean(is.na(.x)))))
+d_selct_1029_4_5_4_5_2022 %>% na_if("-8888") %>%
+        summarise(across(everything(), list(sum=~sum(is.na(.x)), mean=~mean(is.na(.x)))))
+d_selct_1029_4_6_4_6_2022 %>% na_if("-8888") %>%
+        summarise(across(everything(), list(sum=~sum(is.na(.x)), mean=~mean(is.na(.x)))))
+d_selct_1029_4_7_4_7_2022 %>% na_if("-8888") %>%
+        summarise(across(everything(), list(sum=~sum(is.na(.x)), mean=~mean(is.na(.x)))))
+d_selct_1029_4_8_4_8_2022 %>% na_if("-8888") %>%
+        summarise(across(everything(), list(sum=~sum(is.na(.x)), mean=~mean(is.na(.x)))))
+d_selct_1029_4_26_4_26_2022 %>% na_if("-8888") %>%
+        summarise(across(everything(), list(sum=~sum(is.na(.x)), mean=~mean(is.na(.x)))))
+```
+#comments: on the results: 
+#Most misssing values are in Temp variable. However, Tempe variable values raneg bettween 11-10.5 
+Q: to what level we need to coinser the Tmepe variable? 
+
+Descion to make? Find rule for this data set and to deal with missing variables. interplolate or delete. 
+
+
+_____________
+# replace -8888 with NA. 
+#Vidualize data withoht missing variables.
+
+```{r}
+
+data_selct_NA_1029_4_1_4_1_2022<- d_selct_1029_4_1_4_1_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1029_4_1_4_1_2022);
+
+data_selct_NA_1029_4_2_4_2_2022<- d_selct_1029_4_2_4_2_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1029_4_2_4_2_2022);
+
+data_selct_NA_1029_4_3_4_3_2022<- d_selct_1029_4_3_4_3_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1029_4_3_4_3_2022);
+
+data_selct_NA_1029_4_4_4_4_2022<- d_selct_1029_4_4_4_4_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1029_4_4_4_4_2022);
+
+data_selct_NA_1029_4_5_4_5_2022<- d_selct_1029_4_5_4_5_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1029_4_4_4_4_2022);
+
+data_selct_NA_1029_4_6_4_6_2022<- d_selct_1029_4_6_4_6_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1029_4_6_4_6_2022);
+
+data_selct_NA_1029_4_7_4_7_2022<- d_selct_1029_4_7_4_7_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1029_4_7_4_7_2022);
+
+data_selct_NA_1029_4_8_4_8_2022<- d_selct_1029_4_8_4_8_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1029_4_8_4_8_2022);
+
+data_selct_NA_1029_4_9_4_9_2022<- d_selct_1029_4_9_4_9_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1029_4_9_4_9_2022);
+
+data_selct_NA_1029_4_10_4_10_2022<- d_selct_1029_4_10_4_10_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1029_4_10_4_10_2022);
+
+data_selct_NA_1029_4_11_4_11_2022<- d_selct_1029_4_11_4_11_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1029_4_11_4_11_2022);
+
+#continu 12
+data_selct_NA_1029_4_12_4_12_2022<- d_selct_1029_4_12_4_12_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1029_4_12_4_12_2022);
+
+data_selct_NA_1029_4_13_4_13_2022<- d_selct_1029_4_13_4_13_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1029_4_13_4_13_2022);
+
+data_selct_NA_1029_4_14_4_14_2022<- d_selct_1029_4_14_4_14_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1029_4_14_4_14_2022);
+
+data_selct_NA_1029_4_15_4_15_2022<- d_selct_1029_4_15_4_15_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1029_4_15_4_15_2022);
+
+data_selct_NA_1029_4_16_4_16_2022<- d_selct_1029_4_16_4_16_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1029_4_16_4_16_2022);
+
+data_selct_NA_1029_4_17_4_17_2022<- d_selct_1029_4_17_4_17_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1029_4_17_4_17_2022);
+
+data_selct_NA_1029_4_18_4_18_2022<- d_selct_1029_4_18_4_18_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1029_4_18_4_18_2022);
+
+data_selct_NA_1029_4_19_4_19_2022<- d_selct_1029_4_19_4_19_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1029_4_19_4_19_2022);
+
+data_selct_NA_1029_4_20_4_20_2022<- d_selct_1029_4_20_4_20_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1029_4_20_4_20_2022);
+
+data_selct_NA_1029_4_21_4_21_2022<- d_selct_1029_4_21_4_21_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1029_4_21_4_21_2022);
+
+data_selct_NA_1029_4_22_4_22_2022<- d_selct_1029_4_22_4_22_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1029_4_22_4_22_2022);
+
+data_selct_NA_1029_4_23_4_23_2022<- d_selct_1029_4_23_4_23_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1029_4_23_4_23_2022);
+
+data_selct_NA_1029_4_24_4_24_2022<- d_selct_1029_4_24_4_24_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1029_4_24_4_24_2022);
+
+
+data_selct_NA_1029_4_25_4_25_2022<- d_selct_1029_4_25_4_25_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1029_4_25_4_25_2022);
+
+data_selct_NA_1029_4_26_4_26_2022<- d_selct_1029_4_26_4_26_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1029_4_26_4_26_2022);
+
+data_selct_NA_1029_4_27_4_27_2022<- d_selct_1029_4_27_4_27_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1029_4_27_4_27_2022);
+
+data_selct_NA_1029_4_28_4_28_2022<- d_selct_1029_4_28_4_28_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1029_4_28_4_28_2022);
+
+data_selct_NA_1029_4_29_4_29_2022<- d_selct_1029_4_29_4_29_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1029_4_29_4_29_2022);
+
+data_selct_NA_1029_4_30_4_30_2022<- d_selct_1029_4_30_4_30_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1029_4_30_4_30_2022);
+
+```
+
+
+calculate SD after elimnating NA 
+```{r}
+sd(data_selct_NA_1029_4_26_4_26_2022$X1029.Battery.Voltage,na.rm=TRUE)
+sd(data_selct_NA_1029_4_26_4_26_2022$X1029.Inverter.output.Total.power,na.rm=TRUE)
+sd(data_selct_NA_1029_4_26_4_26_2022$X1029.Battery.temperature,na.rm=TRUE)
+sd(data_selct_NA_1029_4_26_4_26_2022$X1029.Battery.output.power,na.rm=TRUE)
+sd(data_selct_NA_1029_4_26_4_26_2022$X1029.Battery.output.current,na.rm=TRUE)
+sd(data_selct_NA_1029_4_26_4_26_2022$X1029.PV1.input.power,na.rm=TRUE)
+sd(data_selct_NA_1029_4_26_4_26_2022$X1029.PV2.input.power,na.rm=TRUE)
+
+```
+
+
+
+
+# aggregaate per 10 minuts 
+```{r}
+n<- 10;
+dataE10_1029_4_1_4_1_2022<- aggregate(data_selct_NA_1029_4_1_4_1_2022,list(rep(1:(nrow(data_selct_NA_1029_4_1_4_1_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1029_4_1_4_1_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1029_4_1_4_1_2022)
+
+dataE10_1029_4_2_4_2_2022<- aggregate(data_selct_NA_1029_4_2_4_2_2022,list(rep(1:(nrow(data_selct_NA_1029_4_2_4_2_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1029_4_2_4_2_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1029_4_2_4_2_2022)
+
+
+dataE10_1029_4_3_4_3_2022<- aggregate(data_selct_NA_1029_4_3_4_3_2022,list(rep(1:(nrow(data_selct_NA_1029_4_3_4_3_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1029_4_3_4_3_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1029_4_3_4_3_2022)
+
+
+dataE10_1029_4_4_4_4_2022<- aggregate(data_selct_NA_1029_4_4_4_4_2022,list(rep(1:(nrow(data_selct_NA_1029_4_4_4_4_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1029_4_4_4_4_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1029_4_4_4_4_2022)
+
+dataE10_1029_4_5_4_5_2022<- aggregate(data_selct_NA_1029_4_5_4_5_2022,list(rep(1:(nrow(data_selct_NA_1029_4_5_4_5_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1029_4_5_4_5_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1029_4_5_4_5_2022)
+
+dataE10_1029_4_6_4_6_2022<- aggregate(data_selct_NA_1029_4_6_4_6_2022,list(rep(1:(nrow(data_selct_NA_1029_4_6_4_6_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1029_4_6_4_6_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1029_4_6_4_6_2022)
+
+dataE10_1029_4_7_4_7_2022<- aggregate(data_selct_NA_1029_4_7_4_7_2022,list(rep(1:(nrow(data_selct_NA_1029_4_7_4_7_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1029_4_7_4_7_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1029_4_7_4_7_2022)
+
+dataE10_1029_4_8_4_8_2022<- aggregate(data_selct_NA_1029_4_8_4_8_2022,list(rep(1:(nrow(data_selct_NA_1029_4_8_4_8_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1029_4_8_4_8_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1029_4_8_4_8_2022)
+
+dataE10_1029_4_9_4_9_2022<- aggregate(data_selct_NA_1029_4_9_4_9_2022,list(rep(1:(nrow(data_selct_NA_1029_4_9_4_9_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1029_4_9_4_9_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1029_4_9_4_9_2022)
+
+dataE10_1029_4_10_4_10_2022<- aggregate(data_selct_NA_1029_4_10_4_10_2022,list(rep(1:(nrow(data_selct_NA_1029_4_10_4_10_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1029_4_10_4_10_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1029_4_10_4_10_2022)
+
+dataE10_1029_4_11_4_11_2022<- aggregate(data_selct_NA_1029_4_11_4_11_2022,list(rep(1:(nrow(data_selct_NA_1029_4_11_4_11_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1029_4_11_4_11_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1029_4_11_4_11_2022)
+
+dataE10_1029_4_12_4_12_2022<- aggregate(data_selct_NA_1029_4_12_4_12_2022,list(rep(1:(nrow(data_selct_NA_1029_4_12_4_12_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1029_4_12_4_12_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1029_4_12_4_12_2022)
+
+dataE10_1029_4_13_4_13_2022<- aggregate(data_selct_NA_1029_4_13_4_13_2022,list(rep(1:(nrow(data_selct_NA_1029_4_13_4_13_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1029_4_13_4_13_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1029_4_13_4_13_2022)
+
+dataE10_1029_4_14_4_14_2022<- aggregate(data_selct_NA_1029_4_14_4_14_2022,list(rep(1:(nrow(data_selct_NA_1029_4_14_4_14_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1029_4_14_4_14_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1029_4_14_4_14_2022)
+
+
+dataE10_1029_4_15_4_15_2022<- aggregate(data_selct_NA_1029_4_15_4_15_2022,list(rep(1:(nrow(data_selct_NA_1029_4_15_4_15_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1029_4_15_4_15_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1029_4_15_4_15_2022)
+
+dataE10_1029_4_16_4_16_2022<- aggregate(data_selct_NA_1029_4_16_4_16_2022,list(rep(1:(nrow(data_selct_NA_1029_4_16_4_16_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1029_4_16_4_16_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1029_4_16_4_16_2022)
+
+dataE10_1029_4_17_4_17_2022<- aggregate(data_selct_NA_1029_4_17_4_17_2022,list(rep(1:(nrow(data_selct_NA_1029_4_17_4_17_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1029_4_17_4_17_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1029_4_17_4_17_2022)
+
+dataE10_1029_4_18_4_18_2022<- aggregate(data_selct_NA_1029_4_18_4_18_2022,list(rep(1:(nrow(data_selct_NA_1029_4_18_4_18_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1029_4_18_4_18_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1029_4_18_4_18_2022)
+
+dataE10_1029_4_19_4_19_2022<- aggregate(data_selct_NA_1029_4_19_4_19_2022,list(rep(1:(nrow(data_selct_NA_1029_4_19_4_19_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1029_4_19_4_19_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1029_4_19_4_19_2022)
+
+dataE10_1029_4_20_4_20_2022<- aggregate(data_selct_NA_1029_4_20_4_20_2022,list(rep(1:(nrow(data_selct_NA_1029_4_20_4_20_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1029_4_20_4_20_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1029_4_20_4_20_2022)
+
+dataE10_1029_4_21_4_21_2022<- aggregate(data_selct_NA_1029_4_21_4_21_2022,list(rep(1:(nrow(data_selct_NA_1029_4_21_4_21_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1029_4_21_4_21_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1029_4_21_4_21_2022)
+
+dataE10_1029_4_22_4_22_2022<- aggregate(data_selct_NA_1029_4_22_4_22_2022,list(rep(1:(nrow(data_selct_NA_1029_4_22_4_22_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1029_4_22_4_22_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1029_4_22_4_22_2022)
+
+dataE10_1029_4_23_4_23_2022<- aggregate(data_selct_NA_1029_4_23_4_23_2022,list(rep(1:(nrow(data_selct_NA_1029_4_23_4_23_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1029_4_23_4_23_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1029_4_23_4_23_2022)
+
+dataE10_1029_4_24_4_24_2022<- aggregate(data_selct_NA_1029_4_24_4_24_2022,list(rep(1:(nrow(data_selct_NA_1029_4_24_4_24_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1029_4_24_4_24_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1029_4_24_4_24_2022)
+
+dataE10_1029_4_25_4_25_2022<- aggregate(data_selct_NA_1029_4_25_4_25_2022,list(rep(1:(nrow(data_selct_NA_1029_4_25_4_25_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1029_4_25_4_25_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1029_4_25_4_25_2022)
+
+dataE10_1029_4_26_4_26_2022<- aggregate(data_selct_NA_1029_4_26_4_26_2022,list(rep(1:(nrow(data_selct_NA_1029_4_26_4_26_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1029_4_26_4_26_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1029_4_26_4_26_2022)
+
+dataE10_1029_4_27_4_27_2022<- aggregate(data_selct_NA_1029_4_27_4_27_2022,list(rep(1:(nrow(data_selct_NA_1029_4_27_4_27_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1029_4_27_4_27_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1029_4_27_4_27_2022)
+
+dataE10_1029_4_28_4_28_2022<- aggregate(data_selct_NA_1029_4_28_4_28_2022,list(rep(1:(nrow(data_selct_NA_1029_4_28_4_28_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1029_4_28_4_28_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1029_4_28_4_28_2022)
+
+dataE10_1029_4_29_4_29_2022<- aggregate(data_selct_NA_1029_4_29_4_29_2022,list(rep(1:(nrow(data_selct_NA_1029_4_29_4_29_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1029_4_29_4_29_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1029_4_29_4_29_2022)
+
+dataE10_1029_4_30_4_30_2022<- aggregate(data_selct_NA_1029_4_30_4_30_2022,list(rep(1:(nrow(data_selct_NA_1029_4_30_4_30_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1029_4_30_4_30_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1029_4_30_4_30_2022)
+```
+
+
+
+
+```{r}
+mts <- ts(dataE10_1029_4_26_4_26_2022$X1029.Battery.Voltage)
+plot(mts, xlab ="10 minuts data", ylab = " Voltage" ,
+    main ="X1029.Battery.Voltage_4_26",
+    col.main ="darkgreen")
+```
+
+
+```{r}
+Inverter.output.Total.Power <- ts(dataE10_1029_4_26_4_26_2022$X1029.Inverter.output.Total.power)
+plot(Inverter.output.Total.Power, xlab ="10 minuts data",
+    main ="X1029.Inverter.Output.Total.Power_4_26",
+    col.main ="darkgreen")
+```
+
+
+```{r}
+Battery.temperature <- ts(dataE10_1029_4_26_4_26_2022$X1029.Battery.temperature)
+plot(Battery.temperature, xlab ="10 minuts data ",
+    main =" X1029.Battery.Temperature_4_26",
+    col.main ="darkgreen")
+```
+
+
+```{r}
+Battery.output.power<- ts(dataE10_1029_4_26_4_26_2022$X1029.Battery.output.power)
+plot(Battery.output.power, xlab ="10 minuts data",
+    main ="X1029.Battery.Output.Power_4_26",
+    col.main ="darkgreen")
+```
+
+```{r}
+Battery.output.current <- ts(dataE10_1029_4_26_4_26_2022$X1029.Battery.output.current)
+plot(Battery.output.current, xlab ="10 minuts data",
+    main =" X1029.Battery.Output.Current_4_26",
+    col.main ="darkgreen")
+```
+
+
+```{r}
+PV1.input.power <- ts(dataE10_1029_4_26_4_26_2022$X1029.PV1.input.power)
+plot(PV1.input.power, xlab ="10 minuts data",
+    main ="X1029.PV1.Input.Power_4_26",
+    col.main ="darkgreen")
+```
+
+
+```{r}
+PV2.input.power <- ts(dataE10_1029_4_26_4_26_2022$X1029.PV2.input.power)
+plot(PV2.input.power, xlab ="10 minuts data",
+    main ="X1029.PV2.input.power_4_26",
+    col.main ="darkgreen")
+```
+
+ts_plot(USgas,
+        title = "US Monthly Natural Gas Consumption",
+        Xtitle = "Time",
+        Ytitle = "Billion Cubic Feet",
+        slider = TRUE)
+        
+        
+```{r}
+plot.ts(dataE10_1029_4_1_4_1_2022)
+plot.ts(dataE10_1029_4_2_4_2_2022)
+plot.ts(dataE10_1029_4_3_4_3_2022)
+plot.ts(dataE10_1029_4_4_4_4_2022)
+plot.ts(dataE10_1029_4_5_4_5_2022)
+plot.ts(dataE10_1029_4_6_4_6_2022)
+plot.ts(dataE10_1029_4_7_4_7_2022)
+plot.ts(dataE10_1029_4_8_4_8_2022)
+plot.ts(dataE10_1029_4_9_4_9_2022)
+plot.ts(dataE10_1029_4_10_4_10_2022)
+plot.ts(dataE10_1029_4_11_4_11_2022)
+plot.ts(dataE10_1029_4_12_4_12_2022)
+plot.ts(dataE10_1029_4_13_4_13_2022)
+plot.ts(dataE10_1029_4_14_4_14_2022)
+plot.ts(dataE10_1029_4_15_4_15_2022)
+plot.ts(dataE10_1029_4_16_4_16_2022)
+plot.ts(dataE10_1029_4_17_4_17_2022)
+plot.ts(dataE10_1029_4_18_4_18_2022)
+plot.ts(dataE10_1029_4_19_4_19_2022)
+plot.ts(dataE10_1029_4_20_4_20_2022)
+plot.ts(dataE10_1029_4_21_4_21_2022)
+plot.ts(dataE10_1029_4_22_4_22_2022)
+plot.ts(dataE10_1029_4_23_4_23_2022)
+plot.ts(dataE10_1029_4_24_4_24_2022)
+plot.ts(dataE10_1029_4_25_4_25_2022)
+plot.ts(dataE10_1029_4_26_4_26_2022)
+plot.ts(dataE10_1029_4_27_4_27_2022)
+plot.ts(dataE10_1029_4_28_4_28_2022)
+plot.ts(dataE10_1029_4_29_4_29_2022)
+plot.ts(dataE10_1029_4_30_4_30_2022)
+
+```
+
+```{r}
+head(dataE10_1029_4_1_4_1_2022)
+
+which(dataE10_1029_4_1_4_1_2022$X1029.Battery.Voltage > 58) [1]
+which.max(dataE10_1029_4_1_4_1_2022$X1029.Battery.Voltage)
+#which(y>56)[1]
+max(dataE10_1029_4_1_4_1_2022$X1029.Battery.Voltage)
+```
+
+
+# BV threshold  
+
+Q. How to determin the thredshol ? Full it is diffrent from Systemt to System 
+
+```{r}
+bf <- 58
+which(dataE10_1029_4_1_4_1_2022$X1029.Battery.Voltage >  bf) [1]
+which(dataE10_1029_4_2_4_2_2022$X1029.Battery.Voltage >  bf) [1]
+which(dataE10_1029_4_3_4_3_2022$X1029.Battery.Voltage >  bf) [1]
+which(dataE10_1029_4_4_4_4_2022$X1029.Battery.Voltage >  bf) [1]
+which(dataE10_1029_4_5_4_5_2022$X1029.Battery.Voltage >  bf) [1]
+which(dataE10_1029_4_6_4_6_2022$X1029.Battery.Voltage >  bf) [1]
+which(dataE10_1029_4_7_4_7_2022$X1029.Battery.Voltage >  bf) [1]
+which(dataE10_1029_4_8_4_8_2022$X1029.Battery.Voltage >  bf) [1]
+which(dataE10_1029_4_9_4_9_2022$X1029.Battery.Voltage >  bf) [1]
+which(dataE10_1029_4_10_4_10_2022$X1029.Battery.Voltage >  bf) [1]
+which(dataE10_1029_4_11_4_11_2022$X1029.Battery.Voltage >  bf) [1]
+which(dataE10_1029_4_12_4_12_2022$X1029.Battery.Voltage >  bf) [1]
+which(dataE10_1029_4_13_4_13_2022$X1029.Battery.Voltage >  bf) [1]
+which(dataE10_1029_4_14_4_14_2022$X1029.Battery.Voltage >  bf) [1]
+which(dataE10_1029_4_15_4_15_2022$X1029.Battery.Voltage >  bf) [1]
+which(dataE10_1029_4_16_4_16_2022$X1029.Battery.Voltage >  bf) [1]
+which(dataE10_1029_4_17_4_17_2022$X1029.Battery.Voltage >  bf) [1]
+which(dataE10_1029_4_18_4_18_2022$X1029.Battery.Voltage >  bf) [1]
+which(dataE10_1029_4_19_4_19_2022$X1029.Battery.Voltage >  bf) [1]
+which(dataE10_1029_4_20_4_20_2022$X1029.Battery.Voltage >  bf) [1]
+which(dataE10_1029_4_21_4_21_2022$X1029.Battery.Voltage >  bf) [1]
+which(dataE10_1029_4_22_4_22_2022$X1029.Battery.Voltage >  bf) [1]
+which(dataE10_1029_4_23_4_23_2022$X1029.Battery.Voltage >  bf) [1]
+which(dataE10_1029_4_24_4_24_2022$X1029.Battery.Voltage >  bf) [1]
+which(dataE10_1029_4_25_4_25_2022$X1029.Battery.Voltage >  bf) [1]
+which(dataE10_1029_4_26_4_26_2022$X1029.Battery.Voltage >  bf) [1]
+which(dataE10_1029_4_27_4_27_2022$X1029.Battery.Voltage >  bf) [1]
+which(dataE10_1029_4_28_4_28_2022$X1029.Battery.Voltage >  bf) [1]
+which(dataE10_1029_4_29_4_29_2022$X1029.Battery.Voltage >  bf) [1]
+which(dataE10_1029_4_30_4_30_2022$X1029.Battery.Voltage >  bf) [1]
+```
+
+# BV max
+```{r}
+which.max(dataE10_1029_4_1_4_1_2022$X1029.Battery.Voltage) [1]
+max (dataE10_1029_4_1_4_1_2022$X1029.Battery.Voltage)
+which.max(dataE10_1029_4_2_4_2_2022$X1029.Battery.Voltage) [1]
+max (dataE10_1029_4_2_4_2_2022$X1029.Battery.Voltage)
+which.max(dataE10_1029_4_3_4_3_2022$X1029.Battery.Voltage) [1]
+max(dataE10_1029_4_3_4_3_2022$X1029.Battery.Voltage) 
+which.max(dataE10_1029_4_4_4_4_2022$X1029.Battery.Voltage) [1]
+max(dataE10_1029_4_4_4_4_2022$X1029.Battery.Voltage)
+which.max(dataE10_1029_4_5_4_5_2022$X1029.Battery.Voltage) [1]
+max(dataE10_1029_4_5_4_5_2022$X1029.Battery.Voltage)
+which.max(dataE10_1029_4_6_4_6_2022$X1029.Battery.Voltage) [1]
+max(dataE10_1029_4_6_4_6_2022$X1029.Battery.Voltage)
+which.max(dataE10_1029_4_7_4_7_2022$X1029.Battery.Voltage) [1]
+max(dataE10_1029_4_7_4_7_2022$X1029.Battery.Voltage)
+which.max(dataE10_1029_4_8_4_8_2022$X1029.Battery.Voltage) [1]
+max(dataE10_1029_4_8_4_8_2022$X1029.Battery.Voltage)
+which.max(dataE10_1029_4_9_4_9_2022$X1029.Battery.Voltage) [1]
+max(dataE10_1029_4_9_4_9_2022$X1029.Battery.Voltage)
+which.max(dataE10_1029_4_10_4_10_2022$X1029.Battery.Voltage) [1]
+max(dataE10_1029_4_10_4_10_2022$X1029.Battery.Voltage)
+which.max(dataE10_1029_4_11_4_11_2022$X1029.Battery.Voltage) [1]
+max(dataE10_1029_4_11_4_11_2022$X1029.Battery.Voltage)
+which.max(dataE10_1029_4_12_4_12_2022$X1029.Battery.Voltage) [1]
+max(dataE10_1029_4_12_4_12_2022$X1029.Battery.Voltage) 
+which.max(dataE10_1029_4_13_4_13_2022$X1029.Battery.Voltage) [1]
+max(dataE10_1029_4_13_4_13_2022$X1029.Battery.Voltage)
+which.max(dataE10_1029_4_14_4_14_2022$X1029.Battery.Voltage) [1]
+max(dataE10_1029_4_14_4_14_2022$X1029.Battery.Voltage)
+which.max(dataE10_1029_4_15_4_15_2022$X1029.Battery.Voltage) [1]
+max(dataE10_1029_4_15_4_15_2022$X1029.Battery.Voltage)
+which.max(dataE10_1029_4_16_4_16_2022$X1029.Battery.Voltage) [1]
+max(dataE10_1029_4_16_4_16_2022$X1029.Battery.Voltage)
+which.max(dataE10_1029_4_17_4_17_2022$X1029.Battery.Voltage) [1]
+max(dataE10_1029_4_17_4_17_2022$X1029.Battery.Voltage)
+which.max(dataE10_1029_4_18_4_18_2022$X1029.Battery.Voltage) [1]
+max(dataE10_1029_4_18_4_18_2022$X1029.Battery.Voltage)
+which.max(dataE10_1029_4_19_4_19_2022$X1029.Battery.Voltage) [1]
+max(dataE10_1029_4_19_4_19_2022$X1029.Battery.Voltage)
+which.max(dataE10_1029_4_20_4_20_2022$X1029.Battery.Voltage) [1]
+max(dataE10_1029_4_20_4_20_2022$X1029.Battery.Voltage)
+which.max(dataE10_1029_4_21_4_21_2022$X1029.Battery.Voltage) [1]
+max(dataE10_1029_4_21_4_21_2022$X1029.Battery.Voltage)
+which.max(dataE10_1029_4_22_4_22_2022$X1029.Battery.Voltage) [1]
+max(dataE10_1029_4_22_4_22_2022$X1029.Battery.Voltage)
+which.max(dataE10_1029_4_23_4_23_2022$X1029.Battery.Voltage) [1]
+max(dataE10_1029_4_23_4_23_2022$X1029.Battery.Voltage)
+which.max(dataE10_1029_4_24_4_24_2022$X1029.Battery.Voltage) [1]
+max(dataE10_1029_4_24_4_24_2022$X1029.Battery.Voltage)
+which.max(dataE10_1029_4_25_4_25_2022$X1029.Battery.Voltage) [1]
+max(dataE10_1029_4_25_4_25_2022$X1029.Battery.Voltage)
+which.max(dataE10_1029_4_26_4_26_2022$X1029.Battery.Voltage) [1]
+max(dataE10_1029_4_26_4_26_2022$X1029.Battery.Voltage) 
+which.max(dataE10_1029_4_27_4_27_2022$X1029.Battery.Voltage) [1]
+max(dataE10_1029_4_27_4_27_2022$X1029.Battery.Voltage)
+which.max(dataE10_1029_4_28_4_28_2022$X1029.Battery.Voltage) [1]
+max(dataE10_1029_4_28_4_28_2022$X1029.Battery.Voltage)
+which.max(dataE10_1029_4_29_4_29_2022$X1029.Battery.Voltage) [1]
+max(dataE10_1029_4_29_4_29_2022$X1029.Battery.Voltage) 
+which.max(dataE10_1029_4_30_4_30_2022$X1029.Battery.Voltage) [1]
+max(dataE10_1029_4_30_4_30_2022$X1029.Battery.Voltage)
+
+
+```
+
+
+```{r}
+which.max(dataE10_1029_4_1_4_1_2022$X1029.Battery.Voltage)
+which(dataE10_1029_4_2_4_2_2022$X1029.Battery.Voltage >  bf) [1]
+max(dataE10_1029_4_1_4_1_2022$X1029.Battery.Voltage)
+
+
+which(dataE10_1029_4_2_4_2_2022$X1029.Battery.Voltage > 56 )[1]
+max(dataE10_1029_4_2_4_2_2022$X1029.Battery.Voltage)
+```
+
+```{r}
+ library(Hmisc)
+hist.data.frame(dataE10_1029_4_1_4_1_2022)
+hist.data.frame(dataE10_1029_4_2_4_2_2022)
+hist.data.frame(dataE10_1029_4_3_4_3_2022)
+hist.data.frame(dataE10_1029_4_4_4_4_2022)
+hist.data.frame(dataE10_1029_4_5_4_5_2022)
+hist.data.frame(dataE10_1029_4_6_4_6_2022)
+hist.data.frame(dataE10_1029_4_7_4_7_2022)
+hist.data.frame(dataE10_1029_4_8_4_8_2022)
+hist.data.frame(dataE10_1029_4_9_4_9_2022)
+hist.data.frame(dataE10_1029_4_10_4_10_2022)
+hist.data.frame(dataE10_1029_4_11_4_11_2022)
+hist.data.frame(dataE10_1029_4_12_4_12_2022)
+hist.data.frame(dataE10_1029_4_13_4_13_2022)
+hist.data.frame(dataE10_1029_4_14_4_14_2022)
+hist.data.frame(dataE10_1029_4_15_4_15_2022)
+hist.data.frame(dataE10_1029_4_16_4_16_2022)
+hist.data.frame(dataE10_1029_4_17_4_17_2022)
+hist.data.frame(dataE10_1029_4_18_4_18_2022)
+hist.data.frame(dataE10_1029_4_19_4_19_2022)
+hist.data.frame(dataE10_1029_4_20_4_20_2022)
+hist.data.frame(dataE10_1029_4_21_4_21_2022)
+hist.data.frame(dataE10_1029_4_22_4_22_2022)
+hist.data.frame(dataE10_1029_4_23_4_23_2022)
+hist.data.frame(dataE10_1029_4_24_4_24_2022)
+hist.data.frame(dataE10_1029_4_25_4_25_2022)
+hist.data.frame(dataE10_1029_4_26_4_26_2022)
+hist.data.frame(dataE10_1029_4_27_4_27_2022)
+hist.data.frame(dataE10_1029_4_28_4_28_2022)
+hist.data.frame(dataE10_1029_4_29_4_29_2022)
+hist.data.frame(dataE10_1029_4_30_4_30_2022)
+
+```
+
+
+
+```{r}
+#library(reshape)
+#meltData <- melt(data=dataE10_1029_4_26_4_26_2022)
+#boxplot(data=meltData,value~variable)
+```
+
+
+#Upload data for unit 1169
+```{r}
+d_1169_4_1_4_1_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1169_CSV/1169_4_1_4_1_2022.csv")
+d_1169_4_2_4_2_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1169_CSV/1169_4_2_4_2_2022.csv")
+d_1169_4_3_4_3_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1169_CSV/1169_4_3_4_3_2022.csv")
+d_1169_4_4_4_4_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1169_CSV/1169_4_4_4_4_2022.csv")
+d_1169_4_5_4_5_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1169_CSV/1169_4_5_4_5_2022.csv")
+d_1169_4_6_4_6_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1169_CSV/1169_4_6_4_6_2022.csv")
+d_1169_4_7_4_7_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1169_CSV/1169_4_7_4_7_2022.csv")
+d_1169_4_8_4_8_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1169_CSV/1169_4_8_4_8_2022.csv")
+d_1169_4_9_4_9_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1169_CSV/1169_4_9_4_9_2022.csv")
+d_1169_4_10_4_10_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1169_CSV/1169_4_10_4_10_2022.csv")
+d_1169_4_11_4_11_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1169_CSV/1169_4_11_4_11_2022.csv")
+d_1169_4_12_4_12_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1169_CSV/1169_4_12_4_12_2022.csv")
+d_1169_4_13_4_13_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1169_CSV/1169_4_13_4_13_2022.csv")
+d_1169_4_14_4_14_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1169_CSV/1169_4_14_4_14_2022.csv")
+d_1169_4_15_4_15_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1169_CSV/1169_4_15_4_15_2022.csv")
+d_1169_4_16_4_16_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1169_CSV/1169_4_16_4_16_2022.csv")
+d_1169_4_17_4_17_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1169_CSV/1169_4_17_4_17_2022.csv")
+d_1169_4_18_4_18_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1169_CSV/1169_4_18_4_18_2022.csv")
+d_1169_4_19_4_19_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1169_CSV/1169_4_19_4_19_2022.csv")
+d_1169_4_20_4_20_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1169_CSV/1169_4_20_4_20_2022.csv")
+d_1169_4_21_4_21_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1169_CSV/1169_4_21_4_21_2022.csv")
+d_1169_4_22_4_22_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1169_CSV/1169_4_22_4_22_2022.csv")
+d_1169_4_23_4_23_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1169_CSV/1169_4_23_4_23_2022.csv")
+d_1169_4_24_4_24_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1169_CSV/1169_4_24_4_24_2022.csv")
+d_1169_4_25_4_25_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1169_CSV/1169_4_25_4_25_2022.csv")
+d_1169_4_26_4_26_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1169_CSV/1169_4_26_4_26_2022.csv")
+d_1169_4_27_4_27_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1169_CSV/1169_4_27_4_27_2022.csv")
+d_1169_4_28_4_28_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1169_CSV/1169_4_28_4_28_2022.csv")
+d_1169_4_29_4_29_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1169_CSV/1169_4_29_4_29_2022.csv")
+d_1169_4_30_4_30_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1169_CSV/1169_4_30_4_30_2022.csv")
+```
+
+
+
+#select only the variables we want from the data set. 
+
+```{r}
+#day1
+d_selct_1169_4_1_4_1_2022<- select(d_1169_4_1_4_1_2022, c(X1169.Battery.Voltage, X1169.Inverter.output.Total.power, X1169.Battery.temperature, X1169.Battery.output.power, X1169.Battery.output.current, X1169.PV1.input.power, X1169.PV2.input.power))
+
+#day2
+d_selct_1169_4_2_4_2_2022<- select(d_1169_4_2_4_2_2022, c(X1169.Battery.Voltage, X1169.Inverter.output.Total.power, X1169.Battery.temperature, X1169.Battery.output.power, X1169.Battery.output.current, X1169.PV1.input.power, X1169.PV2.input.power))
+
+#day3
+d_selct_1169_4_3_4_3_2022<- select(d_1169_4_3_4_3_2022, c(X1169.Battery.Voltage, X1169.Inverter.output.Total.power, X1169.Battery.temperature, X1169.Battery.output.power, X1169.Battery.output.current, X1169.PV1.input.power, X1169.PV2.input.power))
+
+#day4
+d_selct_1169_4_4_4_4_2022<- select(d_1169_4_4_4_4_2022, c(X1169.Battery.Voltage, X1169.Inverter.output.Total.power, X1169.Battery.temperature, X1169.Battery.output.power, X1169.Battery.output.current, X1169.PV1.input.power, X1169.PV2.input.power))
+
+
+#day5
+
+d_selct_1169_4_5_4_5_2022<- select(d_1169_4_5_4_5_2022, c(X1169.Battery.Voltage, X1169.Inverter.output.Total.power, X1169.Battery.temperature, X1169.Battery.output.power, X1169.Battery.output.current, X1169.PV1.input.power, X1169.PV2.input.power))
+
+#day6
+d_selct_1169_4_6_4_6_2022<- select(d_1169_4_6_4_6_2022, c(X1169.Battery.Voltage, X1169.Inverter.output.Total.power, X1169.Battery.temperature, X1169.Battery.output.power, X1169.Battery.output.current, X1169.PV1.input.power, X1169.PV2.input.power))
+
+
+
+#day7
+d_selct_1169_4_7_4_7_2022<- select(d_1169_4_7_4_7_2022, c(X1169.Battery.Voltage, X1169.Inverter.output.Total.power, X1169.Battery.temperature, X1169.Battery.output.power, X1169.Battery.output.current, X1169.PV1.input.power, X1169.PV2.input.power))
+
+
+#day8
+d_selct_1169_4_8_4_8_2022<- select(d_1169_4_8_4_8_2022, c(X1169.Battery.Voltage, X1169.Inverter.output.Total.power, X1169.Battery.temperature, X1169.Battery.output.power, X1169.Battery.output.current, X1169.PV1.input.power, X1169.PV2.input.power))
+
+#day9
+d_selct_1169_4_9_4_9_2022<- select(d_1169_4_9_4_9_2022, c(X1169.Battery.Voltage, X1169.Inverter.output.Total.power, X1169.Battery.temperature, X1169.Battery.output.power, X1169.Battery.output.current, X1169.PV1.input.power, X1169.PV2.input.power))
+
+
+#day10
+d_selct_1169_4_10_4_10_2022<- select(d_1169_4_10_4_10_2022, c(X1169.Battery.Voltage, X1169.Inverter.output.Total.power, X1169.Battery.temperature, X1169.Battery.output.power, X1169.Battery.output.current, X1169.PV1.input.power, X1169.PV2.input.power))
+
+
+#day11
+d_selct_1169_4_11_4_11_2022<- select(d_1169_4_11_4_11_2022, c(X1169.Battery.Voltage, X1169.Inverter.output.Total.power, X1169.Battery.temperature, X1169.Battery.output.power, X1169.Battery.output.current, X1169.PV1.input.power, X1169.PV2.input.power))
+
+
+#day12
+d_selct_1169_4_12_4_12_2022<- select(d_1169_4_12_4_12_2022, c(X1169.Battery.Voltage, X1169.Inverter.output.Total.power, X1169.Battery.temperature, X1169.Battery.output.power, X1169.Battery.output.current, X1169.PV1.input.power, X1169.PV2.input.power))
+
+
+#day13
+d_selct_1169_4_13_4_13_2022<- select(d_1169_4_13_4_13_2022, c(X1169.Battery.Voltage, X1169.Inverter.output.Total.power, X1169.Battery.temperature, X1169.Battery.output.power, X1169.Battery.output.current, X1169.PV1.input.power, X1169.PV2.input.power))
+
+#day14
+d_selct_1169_4_14_4_14_2022<- select(d_1169_4_14_4_14_2022, c(X1169.Battery.Voltage, X1169.Inverter.output.Total.power, X1169.Battery.temperature, X1169.Battery.output.power, X1169.Battery.output.current, X1169.PV1.input.power, X1169.PV2.input.power))
+
+
+#day15
+d_selct_1169_4_15_4_15_2022<- select(d_1169_4_15_4_15_2022, c(X1169.Battery.Voltage, X1169.Inverter.output.Total.power, X1169.Battery.temperature, X1169.Battery.output.power, X1169.Battery.output.current, X1169.PV1.input.power, X1169.PV2.input.power))
+
+
+#day16
+d_selct_1169_4_16_4_16_2022<- select(d_1169_4_16_4_16_2022, c(X1169.Battery.Voltage, X1169.Inverter.output.Total.power, X1169.Battery.temperature, X1169.Battery.output.power, X1169.Battery.output.current, X1169.PV1.input.power, X1169.PV2.input.power))
+
+
+#day17
+d_selct_1169_4_17_4_17_2022<- select(d_1169_4_17_4_17_2022, c(X1169.Battery.Voltage, X1169.Inverter.output.Total.power, X1169.Battery.temperature, X1169.Battery.output.power, X1169.Battery.output.current, X1169.PV1.input.power, X1169.PV2.input.power))
+
+
+#day18
+d_selct_1169_4_18_4_18_2022<- select(d_1169_4_18_4_18_2022, c(X1169.Battery.Voltage, X1169.Inverter.output.Total.power, X1169.Battery.temperature, X1169.Battery.output.power, X1169.Battery.output.current, X1169.PV1.input.power, X1169.PV2.input.power))
+
+
+#day19
+d_selct_1169_4_19_4_19_2022<- select(d_1169_4_19_4_19_2022, c(X1169.Battery.Voltage, X1169.Inverter.output.Total.power, X1169.Battery.temperature, X1169.Battery.output.power, X1169.Battery.output.current, X1169.PV1.input.power, X1169.PV2.input.power))
+
+
+#day20
+d_selct_1169_4_20_4_20_2022<- select(d_1169_4_20_4_20_2022, c(X1169.Battery.Voltage, X1169.Inverter.output.Total.power, X1169.Battery.temperature, X1169.Battery.output.power, X1169.Battery.output.current, X1169.PV1.input.power, X1169.PV2.input.power))
+
+
+#day21
+d_selct_1169_4_21_4_21_2022<- select(d_1169_4_21_4_21_2022, c(X1169.Battery.Voltage, X1169.Inverter.output.Total.power, X1169.Battery.temperature, X1169.Battery.output.power, X1169.Battery.output.current, X1169.PV1.input.power, X1169.PV2.input.power))
+
+#day22
+d_selct_1169_4_22_4_22_2022<- select(d_1169_4_22_4_22_2022, c(X1169.Battery.Voltage, X1169.Inverter.output.Total.power, X1169.Battery.temperature, X1169.Battery.output.power, X1169.Battery.output.current, X1169.PV1.input.power, X1169.PV2.input.power))
+
+
+
+#day23
+d_selct_1169_4_23_4_23_2022<- select(d_1169_4_23_4_23_2022, c(X1169.Battery.Voltage, X1169.Inverter.output.Total.power, X1169.Battery.temperature, X1169.Battery.output.power, X1169.Battery.output.current, X1169.PV1.input.power, X1169.PV2.input.power))
+
+#day24
+d_selct_1169_4_24_4_24_2022<- select(d_1169_4_24_4_24_2022, c(X1169.Battery.Voltage, X1169.Inverter.output.Total.power, X1169.Battery.temperature, X1169.Battery.output.power, X1169.Battery.output.current, X1169.PV1.input.power, X1169.PV2.input.power))
+
+#day25
+d_selct_1169_4_25_4_25_2022<- select(d_1169_4_25_4_25_2022, c(X1169.Battery.Voltage, X1169.Inverter.output.Total.power, X1169.Battery.temperature, X1169.Battery.output.power, X1169.Battery.output.current, X1169.PV1.input.power, X1169.PV2.input.power))
+
+
+#day26
+d_selct_1169_4_26_4_26_2022<- select(d_1169_4_26_4_26_2022,  c(X1169.Battery.Voltage, X1169.Inverter.output.Total.power, X1169.Battery.temperature, X1169.Battery.output.power, X1169.Battery.output.current, X1169.PV1.input.power, X1169.PV2.input.power))
+
+
+#day27
+d_selct_1169_4_27_4_27_2022<- select(d_1169_4_27_4_27_2022, c(X1169.Battery.Voltage, X1169.Inverter.output.Total.power, X1169.Battery.temperature, X1169.Battery.output.power, X1169.Battery.output.current, X1169.PV1.input.power, X1169.PV2.input.power))
+
+#day28
+d_selct_1169_4_28_4_28_2022<- select(d_1169_4_28_4_28_2022,  c(X1169.Battery.Voltage, X1169.Inverter.output.Total.power, X1169.Battery.temperature, X1169.Battery.output.power, X1169.Battery.output.current, X1169.PV1.input.power, X1169.PV2.input.power))
+
+#day29
+d_selct_1169_4_29_4_29_2022<- select(d_1169_4_29_4_29_2022, c(X1169.Battery.Voltage, X1169.Inverter.output.Total.power, X1169.Battery.temperature, X1169.Battery.output.power, X1169.Battery.output.current, X1169.PV1.input.power, X1169.PV2.input.power))
+
+
+#day30
+d_selct_1169_4_30_4_30_2022<- select(d_1169_4_30_4_30_2022,c(X1169.Battery.Voltage, X1169.Inverter.output.Total.power, X1169.Battery.temperature, X1169.Battery.output.power, X1169.Battery.output.current, X1169.PV1.input.power, X1169.PV2.input.power))
+
+```
+
+
+_____________
+# replace -8888 with NA. 
+#Vidualize data withoht missing variables.
+
+```{r}
+library(naniar)
+data_selct_NA_1169_4_1_4_1_2022<- d_selct_1169_4_1_4_1_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1169_4_1_4_1_2022);
+
+data_selct_NA_1169_4_2_4_2_2022<- d_selct_1169_4_2_4_2_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1169_4_2_4_2_2022);
+
+data_selct_NA_1169_4_3_4_3_2022<- d_selct_1169_4_3_4_3_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1169_4_3_4_3_2022);
+
+data_selct_NA_1169_4_4_4_4_2022<- d_selct_1169_4_4_4_4_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1169_4_4_4_4_2022);
+
+data_selct_NA_1169_4_5_4_5_2022<- d_selct_1169_4_5_4_5_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1169_4_4_4_4_2022);
+
+data_selct_NA_1169_4_6_4_6_2022<- d_selct_1169_4_6_4_6_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1169_4_6_4_6_2022);
+
+data_selct_NA_1169_4_7_4_7_2022<- d_selct_1169_4_7_4_7_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1169_4_7_4_7_2022);
+
+data_selct_NA_1169_4_8_4_8_2022<- d_selct_1169_4_8_4_8_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1169_4_8_4_8_2022);
+
+data_selct_NA_1169_4_9_4_9_2022<- d_selct_1169_4_9_4_9_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1169_4_9_4_9_2022);
+
+data_selct_NA_1169_4_10_4_10_2022<- d_selct_1169_4_10_4_10_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1169_4_10_4_10_2022);
+
+data_selct_NA_1169_4_11_4_11_2022<- d_selct_1169_4_11_4_11_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1169_4_11_4_11_2022);
+
+#continu 12
+data_selct_NA_1169_4_12_4_12_2022<- d_selct_1169_4_12_4_12_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1169_4_12_4_12_2022);
+
+data_selct_NA_1169_4_13_4_13_2022<- d_selct_1169_4_13_4_13_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1169_4_13_4_13_2022);
+
+data_selct_NA_1169_4_14_4_14_2022<- d_selct_1169_4_14_4_14_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1169_4_14_4_14_2022);
+
+data_selct_NA_1169_4_15_4_15_2022<- d_selct_1169_4_15_4_15_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1169_4_15_4_15_2022);
+
+data_selct_NA_1169_4_16_4_16_2022<- d_selct_1169_4_16_4_16_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1169_4_16_4_16_2022);
+
+data_selct_NA_1169_4_17_4_17_2022<- d_selct_1169_4_17_4_17_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1169_4_17_4_17_2022);
+
+data_selct_NA_1169_4_18_4_18_2022<- d_selct_1169_4_18_4_18_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1169_4_18_4_18_2022);
+
+data_selct_NA_1169_4_19_4_19_2022<- d_selct_1169_4_19_4_19_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1169_4_19_4_19_2022);
+
+data_selct_NA_1169_4_20_4_20_2022<- d_selct_1169_4_20_4_20_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1169_4_20_4_20_2022);
+
+data_selct_NA_1169_4_21_4_21_2022<- d_selct_1169_4_21_4_21_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1169_4_21_4_21_2022);
+
+data_selct_NA_1169_4_22_4_22_2022<- d_selct_1169_4_22_4_22_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1169_4_22_4_22_2022);
+
+data_selct_NA_1169_4_23_4_23_2022<- d_selct_1169_4_23_4_23_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1169_4_23_4_23_2022);
+
+data_selct_NA_1169_4_24_4_24_2022<- d_selct_1169_4_24_4_24_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1169_4_24_4_24_2022);
+
+
+data_selct_NA_1169_4_25_4_25_2022<- d_selct_1169_4_25_4_25_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1169_4_25_4_25_2022);
+
+data_selct_NA_1169_4_26_4_26_2022<- d_selct_1169_4_26_4_26_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1169_4_26_4_26_2022);
+
+data_selct_NA_1169_4_27_4_27_2022<- d_selct_1169_4_27_4_27_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1169_4_27_4_27_2022);
+
+data_selct_NA_1169_4_28_4_28_2022<- d_selct_1169_4_28_4_28_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1169_4_28_4_28_2022);
+
+data_selct_NA_1169_4_29_4_29_2022<- d_selct_1169_4_29_4_29_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1169_4_29_4_29_2022);
+
+data_selct_NA_1169_4_30_4_30_2022<- d_selct_1169_4_30_4_30_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1169_4_30_4_30_2022);
+
+```
+
+
+# Starting from the day 14 th all data missing.
+
+# aggregaate per 10 minuts 
+```{r}
+n<- 10;
+dataE10_1169_4_1_4_1_2022<- aggregate(data_selct_NA_1169_4_1_4_1_2022,list(rep(1:(nrow(data_selct_NA_1169_4_1_4_1_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1169_4_1_4_1_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1169_4_1_4_1_2022)
+
+dataE10_1169_4_2_4_2_2022<- aggregate(data_selct_NA_1169_4_2_4_2_2022,list(rep(1:(nrow(data_selct_NA_1169_4_2_4_2_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1169_4_2_4_2_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1169_4_2_4_2_2022)
+
+
+dataE10_1169_4_3_4_3_2022<- aggregate(data_selct_NA_1169_4_3_4_3_2022,list(rep(1:(nrow(data_selct_NA_1169_4_3_4_3_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1169_4_3_4_3_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1169_4_3_4_3_2022)
+
+
+dataE10_1169_4_4_4_4_2022<- aggregate(data_selct_NA_1169_4_4_4_4_2022,list(rep(1:(nrow(data_selct_NA_1169_4_4_4_4_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1169_4_4_4_4_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1169_4_4_4_4_2022)
+
+dataE10_1169_4_5_4_5_2022<- aggregate(data_selct_NA_1169_4_5_4_5_2022,list(rep(1:(nrow(data_selct_NA_1169_4_5_4_5_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1169_4_5_4_5_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1169_4_5_4_5_2022)
+
+dataE10_1169_4_6_4_6_2022<- aggregate(data_selct_NA_1169_4_6_4_6_2022,list(rep(1:(nrow(data_selct_NA_1169_4_6_4_6_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1169_4_6_4_6_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1169_4_6_4_6_2022)
+
+dataE10_1169_4_7_4_7_2022<- aggregate(data_selct_NA_1169_4_7_4_7_2022,list(rep(1:(nrow(data_selct_NA_1169_4_7_4_7_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1169_4_7_4_7_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1169_4_7_4_7_2022)
+
+dataE10_1169_4_8_4_8_2022<- aggregate(data_selct_NA_1169_4_8_4_8_2022,list(rep(1:(nrow(data_selct_NA_1169_4_8_4_8_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1169_4_8_4_8_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1169_4_8_4_8_2022)
+
+dataE10_1169_4_9_4_9_2022<- aggregate(data_selct_NA_1169_4_9_4_9_2022,list(rep(1:(nrow(data_selct_NA_1169_4_9_4_9_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1169_4_9_4_9_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1169_4_9_4_9_2022)
+
+dataE10_1169_4_10_4_10_2022<- aggregate(data_selct_NA_1169_4_10_4_10_2022,list(rep(1:(nrow(data_selct_NA_1169_4_10_4_10_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1169_4_10_4_10_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1169_4_10_4_10_2022)
+
+dataE10_1169_4_11_4_11_2022<- aggregate(data_selct_NA_1169_4_11_4_11_2022,list(rep(1:(nrow(data_selct_NA_1169_4_11_4_11_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1169_4_11_4_11_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1169_4_11_4_11_2022)
+
+dataE10_1169_4_12_4_12_2022<- aggregate(data_selct_NA_1169_4_12_4_12_2022,list(rep(1:(nrow(data_selct_NA_1169_4_12_4_12_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1169_4_12_4_12_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1169_4_12_4_12_2022)
+
+dataE10_1169_4_13_4_13_2022<- aggregate(data_selct_NA_1169_4_13_4_13_2022,list(rep(1:(nrow(data_selct_NA_1169_4_13_4_13_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1169_4_13_4_13_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1169_4_13_4_13_2022)
+
+dataE10_1169_4_14_4_14_2022<- aggregate(data_selct_NA_1169_4_14_4_14_2022,list(rep(1:(nrow(data_selct_NA_1169_4_14_4_14_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1169_4_14_4_14_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1169_4_14_4_14_2022)
+
+
+dataE10_1169_4_15_4_15_2022<- aggregate(data_selct_NA_1169_4_15_4_15_2022,list(rep(1:(nrow(data_selct_NA_1169_4_15_4_15_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1169_4_15_4_15_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1169_4_15_4_15_2022)
+
+dataE10_1169_4_16_4_16_2022<- aggregate(data_selct_NA_1169_4_16_4_16_2022,list(rep(1:(nrow(data_selct_NA_1169_4_16_4_16_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1169_4_16_4_16_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1169_4_16_4_16_2022)
+
+dataE10_1169_4_17_4_17_2022<- aggregate(data_selct_NA_1169_4_17_4_17_2022,list(rep(1:(nrow(data_selct_NA_1169_4_17_4_17_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1169_4_17_4_17_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1169_4_17_4_17_2022)
+
+dataE10_1169_4_18_4_18_2022<- aggregate(data_selct_NA_1169_4_18_4_18_2022,list(rep(1:(nrow(data_selct_NA_1169_4_18_4_18_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1169_4_18_4_18_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1169_4_18_4_18_2022)
+
+dataE10_1169_4_19_4_19_2022<- aggregate(data_selct_NA_1169_4_19_4_19_2022,list(rep(1:(nrow(data_selct_NA_1169_4_19_4_19_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1169_4_19_4_19_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1169_4_19_4_19_2022)
+
+dataE10_1169_4_20_4_20_2022<- aggregate(data_selct_NA_1169_4_20_4_20_2022,list(rep(1:(nrow(data_selct_NA_1169_4_20_4_20_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1169_4_20_4_20_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1169_4_20_4_20_2022)
+
+dataE10_1169_4_21_4_21_2022<- aggregate(data_selct_NA_1169_4_21_4_21_2022,list(rep(1:(nrow(data_selct_NA_1169_4_21_4_21_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1169_4_21_4_21_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1169_4_21_4_21_2022)
+
+dataE10_1169_4_22_4_22_2022<- aggregate(data_selct_NA_1169_4_22_4_22_2022,list(rep(1:(nrow(data_selct_NA_1169_4_22_4_22_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1169_4_22_4_22_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1169_4_22_4_22_2022)
+
+dataE10_1169_4_23_4_23_2022<- aggregate(data_selct_NA_1169_4_23_4_23_2022,list(rep(1:(nrow(data_selct_NA_1169_4_23_4_23_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1169_4_23_4_23_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1169_4_23_4_23_2022)
+
+dataE10_1169_4_24_4_24_2022<- aggregate(data_selct_NA_1169_4_24_4_24_2022,list(rep(1:(nrow(data_selct_NA_1169_4_24_4_24_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1169_4_24_4_24_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1169_4_24_4_24_2022)
+
+dataE10_1169_4_25_4_25_2022<- aggregate(data_selct_NA_1169_4_25_4_25_2022,list(rep(1:(nrow(data_selct_NA_1169_4_25_4_25_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1169_4_25_4_25_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1169_4_25_4_25_2022)
+
+dataE10_1169_4_26_4_26_2022<- aggregate(data_selct_NA_1169_4_26_4_26_2022,list(rep(1:(nrow(data_selct_NA_1169_4_26_4_26_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1169_4_26_4_26_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1169_4_26_4_26_2022)
+
+dataE10_1169_4_27_4_27_2022<- aggregate(data_selct_NA_1169_4_27_4_27_2022,list(rep(1:(nrow(data_selct_NA_1169_4_27_4_27_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1169_4_27_4_27_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1169_4_27_4_27_2022)
+
+dataE10_1169_4_28_4_28_2022<- aggregate(data_selct_NA_1169_4_28_4_28_2022,list(rep(1:(nrow(data_selct_NA_1169_4_28_4_28_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1169_4_28_4_28_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1169_4_28_4_28_2022)
+
+dataE10_1169_4_29_4_29_2022<- aggregate(data_selct_NA_1169_4_29_4_29_2022,list(rep(1:(nrow(data_selct_NA_1169_4_29_4_29_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1169_4_29_4_29_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1169_4_29_4_29_2022)
+
+dataE10_1169_4_30_4_30_2022<- aggregate(data_selct_NA_1169_4_30_4_30_2022,list(rep(1:(nrow(data_selct_NA_1169_4_30_4_30_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1169_4_30_4_30_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1169_4_30_4_30_2022)
+```
+
+
+
+
+
+
+
+#Upload data for unit 1109
+```{r}
+d_1109_4_1_4_1_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1109_CSV/1109_4_1_4_1_2022.csv")
+d_1109_4_2_4_2_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1109_CSV/1109_4_2_4_2_2022.csv")
+d_1109_4_3_4_3_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1109_CSV/1109_4_3_4_3_2022.csv")
+d_1109_4_4_4_4_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1109_CSV/1109_4_4_4_4_2022.csv")
+d_1109_4_5_4_5_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1109_CSV/1109_4_5_4_5_2022.csv")
+d_1109_4_6_4_6_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1109_CSV/1109_4_6_4_6_2022.csv")
+d_1109_4_7_4_7_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1109_CSV/1109_4_7_4_7_2022.csv")
+d_1109_4_8_4_8_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1109_CSV/1109_4_8_4_8_2022.csv")
+d_1109_4_9_4_9_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1109_CSV/1109_4_9_4_9_2022.csv")
+d_1109_4_10_4_10_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1109_CSV/1109_4_10_4_10_2022.csv")
+d_1109_4_11_4_11_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1109_CSV/1109_4_11_4_11_2022.csv")
+d_1109_4_12_4_12_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1109_CSV/1109_4_12_4_12_2022.csv")
+d_1109_4_13_4_13_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1109_CSV/1109_4_13_4_13_2022.csv")
+d_1109_4_14_4_14_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1109_CSV/1109_4_14_4_14_2022.csv")
+d_1109_4_15_4_15_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1109_CSV/1109_4_15_4_15_2022.csv")
+d_1109_4_16_4_16_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1109_CSV/1109_4_16_4_16_2022.csv")
+d_1109_4_17_4_17_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1109_CSV/1109_4_17_4_17_2022.csv")
+d_1109_4_18_4_18_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1109_CSV/1109_4_18_4_18_2022.csv")
+d_1109_4_19_4_19_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1109_CSV/1109_4_19_4_19_2022.csv")
+d_1109_4_20_4_20_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1109_CSV/1109_4_20_4_20_2022.csv")
+d_1109_4_21_4_21_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1109_CSV/1109_4_21_4_21_2022.csv")
+d_1109_4_22_4_22_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1109_CSV/1109_4_22_4_22_2022.csv")
+d_1109_4_23_4_23_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1109_CSV/1109_4_23_4_23_2022.csv")
+d_1109_4_24_4_24_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1109_CSV/1109_4_24_4_24_2022.csv")
+d_1109_4_25_4_25_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1109_CSV/1109_4_25_4_25_2022.csv")
+d_1109_4_26_4_26_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1109_CSV/1109_4_26_4_26_2022.csv")
+d_1109_4_27_4_27_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1109_CSV/1109_4_27_4_27_2022.csv")
+d_1109_4_28_4_28_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1109_CSV/1109_4_28_4_28_2022.csv")
+
+d_1109_4_29_4_29_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1109_CSV/1109_4_29_4_29_2022.csv")
+d_1109_4_30_4_30_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1109_CSV/1109_4_30_4_30_2022.csv")
+```
+
+
+
+#select only the variables we want from the data set. 
+
+```{r}
+#day1
+d_selct_1109_4_1_4_1_2022<- select(d_1109_4_1_4_1_2022, c(X1109.Battery.Voltage, X1109.Inverter.output.Total.power, X1109.Battery.temperature, X1109.Battery.output.power, X1109.Battery.output.current, X1109.PV1.input.power, X1109.PV2.input.power))
+
+#day2
+d_selct_1109_4_2_4_2_2022<- select(d_1109_4_2_4_2_2022, c(X1109.Battery.Voltage, X1109.Inverter.output.Total.power, X1109.Battery.temperature, X1109.Battery.output.power, X1109.Battery.output.current, X1109.PV1.input.power, X1109.PV2.input.power))
+
+#day3
+d_selct_1109_4_3_4_3_2022<- select(d_1109_4_3_4_3_2022, c(X1109.Battery.Voltage, X1109.Inverter.output.Total.power, X1109.Battery.temperature, X1109.Battery.output.power, X1109.Battery.output.current, X1109.PV1.input.power, X1109.PV2.input.power))
+
+#day4
+d_selct_1109_4_4_4_4_2022<- select(d_1109_4_4_4_4_2022, c(X1109.Battery.Voltage, X1109.Inverter.output.Total.power, X1109.Battery.temperature, X1109.Battery.output.power, X1109.Battery.output.current, X1109.PV1.input.power, X1109.PV2.input.power))
+
+
+#day5
+
+d_selct_1109_4_5_4_5_2022<- select(d_1109_4_5_4_5_2022, c(X1109.Battery.Voltage, X1109.Inverter.output.Total.power, X1109.Battery.temperature, X1109.Battery.output.power, X1109.Battery.output.current, X1109.PV1.input.power, X1109.PV2.input.power))
+
+#day6
+d_selct_1109_4_6_4_6_2022<- select(d_1109_4_6_4_6_2022, c(X1109.Battery.Voltage, X1109.Inverter.output.Total.power, X1109.Battery.temperature, X1109.Battery.output.power, X1109.Battery.output.current, X1109.PV1.input.power, X1109.PV2.input.power))
+
+
+#day7
+d_selct_1109_4_7_4_7_2022<- select(d_1109_4_7_4_7_2022, c(X1109.Battery.Voltage, X1109.Inverter.output.Total.power, X1109.Battery.temperature, X1109.Battery.output.power, X1109.Battery.output.current, X1109.PV1.input.power, X1109.PV2.input.power))
+
+
+#day8
+d_selct_1109_4_8_4_8_2022<- select(d_1109_4_8_4_8_2022, c(X1109.Battery.Voltage, X1109.Inverter.output.Total.power, X1109.Battery.temperature, X1109.Battery.output.power, X1109.Battery.output.current, X1109.PV1.input.power, X1109.PV2.input.power))
+
+#day9
+d_selct_1109_4_9_4_9_2022<- select(d_1109_4_9_4_9_2022, c(X1109.Battery.Voltage, X1109.Inverter.output.Total.power, X1109.Battery.temperature, X1109.Battery.output.power, X1109.Battery.output.current, X1109.PV1.input.power, X1109.PV2.input.power))
+
+
+#day10
+d_selct_1109_4_10_4_10_2022<- select(d_1109_4_10_4_10_2022, c(X1109.Battery.Voltage, X1109.Inverter.output.Total.power, X1109.Battery.temperature, X1109.Battery.output.power, X1109.Battery.output.current, X1109.PV1.input.power, X1109.PV2.input.power))
+
+#day11
+d_selct_1109_4_11_4_11_2022<- select(d_1109_4_11_4_11_2022, c(X1109.Battery.Voltage, X1109.Inverter.output.Total.power, X1109.Battery.temperature, X1109.Battery.output.power, X1109.Battery.output.current, X1109.PV1.input.power, X1109.PV2.input.power))
+
+
+#day12
+d_selct_1109_4_12_4_12_2022<- select(d_1109_4_12_4_12_2022, c(X1109.Battery.Voltage, X1109.Inverter.output.Total.power, X1109.Battery.temperature, X1109.Battery.output.power, X1109.Battery.output.current, X1109.PV1.input.power, X1109.PV2.input.power))
+
+
+#day13
+d_selct_1109_4_13_4_13_2022<- select(d_1109_4_13_4_13_2022, c(X1109.Battery.Voltage, X1109.Inverter.output.Total.power, X1109.Battery.temperature, X1109.Battery.output.power, X1109.Battery.output.current, X1109.PV1.input.power, X1109.PV2.input.power))
+
+#day14
+d_selct_1109_4_14_4_14_2022<- select(d_1109_4_14_4_14_2022, c(X1109.Battery.Voltage, X1109.Inverter.output.Total.power, X1109.Battery.temperature, X1109.Battery.output.power, X1109.Battery.output.current, X1109.PV1.input.power, X1109.PV2.input.power))
+
+
+#day15
+d_selct_1109_4_15_4_15_2022<- select(d_1109_4_15_4_15_2022, c(X1109.Battery.Voltage, X1109.Inverter.output.Total.power, X1109.Battery.temperature, X1109.Battery.output.power, X1109.Battery.output.current, X1109.PV1.input.power, X1109.PV2.input.power))
+
+
+#day16
+d_selct_1109_4_16_4_16_2022<- select(d_1109_4_16_4_16_2022, c(X1109.Battery.Voltage, X1109.Inverter.output.Total.power, X1109.Battery.temperature, X1109.Battery.output.power, X1109.Battery.output.current, X1109.PV1.input.power, X1109.PV2.input.power))
+
+
+#day17
+d_selct_1109_4_17_4_17_2022<- select(d_1109_4_17_4_17_2022, c(X1109.Battery.Voltage, X1109.Inverter.output.Total.power, X1109.Battery.temperature, X1109.Battery.output.power, X1109.Battery.output.current, X1109.PV1.input.power, X1109.PV2.input.power))
+
+
+#day18
+d_selct_1109_4_18_4_18_2022<- select(d_1109_4_18_4_18_2022, c(X1109.Battery.Voltage, X1109.Inverter.output.Total.power, X1109.Battery.temperature, X1109.Battery.output.power, X1109.Battery.output.current, X1109.PV1.input.power, X1109.PV2.input.power))
+
+
+#day19
+d_selct_1109_4_19_4_19_2022<- select(d_1109_4_19_4_19_2022, c(X1109.Battery.Voltage, X1109.Inverter.output.Total.power, X1109.Battery.temperature, X1109.Battery.output.power, X1109.Battery.output.current, X1109.PV1.input.power, X1109.PV2.input.power))
+
+#day20
+d_selct_1109_4_20_4_20_2022<- select(d_1109_4_20_4_20_2022, c(X1109.Battery.Voltage, X1109.Inverter.output.Total.power, X1109.Battery.temperature, X1109.Battery.output.power, X1109.Battery.output.current, X1109.PV1.input.power, X1109.PV2.input.power))
+
+
+#day21
+d_selct_1109_4_21_4_21_2022<- select(d_1109_4_21_4_21_2022, c(X1109.Battery.Voltage, X1109.Inverter.output.Total.power, X1109.Battery.temperature, X1109.Battery.output.power, X1109.Battery.output.current, X1109.PV1.input.power, X1109.PV2.input.power))
+
+#day22
+d_selct_1109_4_22_4_22_2022<- select(d_1109_4_22_4_22_2022, c(X1109.Battery.Voltage, X1109.Inverter.output.Total.power, X1109.Battery.temperature, X1109.Battery.output.power, X1109.Battery.output.current, X1109.PV1.input.power, X1109.PV2.input.power))
+
+
+
+#day23
+d_selct_1109_4_23_4_23_2022<- select(d_1109_4_23_4_23_2022, c(X1109.Battery.Voltage, X1109.Inverter.output.Total.power, X1109.Battery.temperature, X1109.Battery.output.power, X1109.Battery.output.current, X1109.PV1.input.power, X1109.PV2.input.power))
+
+#day24
+d_selct_1109_4_24_4_24_2022<- select(d_1109_4_24_4_24_2022, c(X1109.Battery.Voltage, X1109.Inverter.output.Total.power, X1109.Battery.temperature, X1109.Battery.output.power, X1109.Battery.output.current, X1109.PV1.input.power, X1109.PV2.input.power))
+
+#day25
+d_selct_1109_4_25_4_25_2022<- select(d_1109_4_25_4_25_2022, c(X1109.Battery.Voltage, X1109.Inverter.output.Total.power, X1109.Battery.temperature, X1109.Battery.output.power, X1109.Battery.output.current, X1109.PV1.input.power, X1109.PV2.input.power))
+
+
+#day26
+d_selct_1109_4_26_4_26_2022<- select(d_1109_4_26_4_26_2022,  c(X1109.Battery.Voltage, X1109.Inverter.output.Total.power, X1109.Battery.temperature, X1109.Battery.output.power, X1109.Battery.output.current, X1109.PV1.input.power, X1109.PV2.input.power))
+
+
+#day27
+d_selct_1109_4_27_4_27_2022<- select(d_1109_4_27_4_27_2022, c(X1109.Battery.Voltage, X1109.Inverter.output.Total.power, X1109.Battery.temperature, X1109.Battery.output.power, X1109.Battery.output.current, X1109.PV1.input.power, X1109.PV2.input.power))
+#day28
+d_selct_1109_4_28_4_28_2022<- select(d_1109_4_28_4_28_2022,  c(X1109.Battery.Voltage, X1109.Inverter.output.Total.power, X1109.Battery.temperature, X1109.Battery.output.power, X1109.Battery.output.current, X1109.PV1.input.power, X1109.PV2.input.power))
+
+#day29
+d_selct_1109_4_29_4_29_2022<- select(d_1109_4_29_4_29_2022, c(X1109.Battery.Voltage, X1109.Inverter.output.Total.power, X1109.Battery.temperature, X1109.Battery.output.power, X1109.Battery.output.current, X1109.PV1.input.power, X1109.PV2.input.power))
+
+
+#day30
+d_selct_1109_4_30_4_30_2022<- select(d_1109_4_30_4_30_2022,c(X1109.Battery.Voltage, X1109.Inverter.output.Total.power, X1109.Battery.temperature, X1109.Battery.output.power, X1109.Battery.output.current, X1109.PV1.input.power, X1109.PV2.input.power))
+
+```
+
+
+
+# replace -8888 with NA. 
+#Vidualize data withoht missing variables.
+
+```{r}
+library(naniar)
+data_selct_NA_1109_4_1_4_1_2022<- d_selct_1109_4_1_4_1_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1109_4_1_4_1_2022);
+
+data_selct_NA_1109_4_2_4_2_2022<- d_selct_1109_4_2_4_2_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1109_4_2_4_2_2022);
+
+data_selct_NA_1109_4_3_4_3_2022<- d_selct_1109_4_3_4_3_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1109_4_3_4_3_2022);
+
+data_selct_NA_1109_4_4_4_4_2022<- d_selct_1109_4_4_4_4_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1109_4_4_4_4_2022);
+
+data_selct_NA_1109_4_5_4_5_2022<- d_selct_1109_4_5_4_5_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1109_4_4_4_4_2022);
+
+data_selct_NA_1109_4_6_4_6_2022<- d_selct_1109_4_6_4_6_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1109_4_6_4_6_2022);
+
+data_selct_NA_1109_4_7_4_7_2022<- d_selct_1109_4_7_4_7_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1109_4_7_4_7_2022);
+
+data_selct_NA_1109_4_8_4_8_2022<- d_selct_1109_4_8_4_8_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1109_4_8_4_8_2022);
+
+data_selct_NA_1109_4_9_4_9_2022<- d_selct_1109_4_9_4_9_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1109_4_9_4_9_2022);
+
+data_selct_NA_1109_4_10_4_10_2022<- d_selct_1109_4_10_4_10_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1109_4_10_4_10_2022);
+
+data_selct_NA_1109_4_11_4_11_2022<- d_selct_1109_4_11_4_11_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1109_4_11_4_11_2022);
+
+#continu 12
+data_selct_NA_1109_4_12_4_12_2022<- d_selct_1109_4_12_4_12_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1109_4_12_4_12_2022);
+
+data_selct_NA_1109_4_13_4_13_2022<- d_selct_1109_4_13_4_13_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1109_4_13_4_13_2022);
+
+data_selct_NA_1109_4_14_4_14_2022<- d_selct_1109_4_14_4_14_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1109_4_14_4_14_2022);
+
+data_selct_NA_1109_4_15_4_15_2022<- d_selct_1109_4_15_4_15_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1109_4_15_4_15_2022);
+
+data_selct_NA_1109_4_16_4_16_2022<- d_selct_1109_4_16_4_16_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1109_4_16_4_16_2022);
+
+data_selct_NA_1109_4_17_4_17_2022<- d_selct_1109_4_17_4_17_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1109_4_17_4_17_2022);
+
+data_selct_NA_1109_4_18_4_18_2022<- d_selct_1109_4_18_4_18_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1109_4_18_4_18_2022);
+
+data_selct_NA_1109_4_19_4_19_2022<- d_selct_1109_4_19_4_19_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1109_4_19_4_19_2022);
+
+data_selct_NA_1109_4_20_4_20_2022<- d_selct_1109_4_20_4_20_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1109_4_20_4_20_2022);
+
+data_selct_NA_1109_4_21_4_21_2022<- d_selct_1109_4_21_4_21_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1109_4_21_4_21_2022);
+
+data_selct_NA_1109_4_22_4_22_2022<- d_selct_1109_4_22_4_22_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1109_4_22_4_22_2022);
+
+data_selct_NA_1109_4_23_4_23_2022<- d_selct_1109_4_23_4_23_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1109_4_23_4_23_2022);
+
+data_selct_NA_1109_4_24_4_24_2022<- d_selct_1109_4_24_4_24_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1109_4_24_4_24_2022);
+
+
+data_selct_NA_1109_4_25_4_25_2022<- d_selct_1109_4_25_4_25_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1109_4_25_4_25_2022);
+
+data_selct_NA_1109_4_26_4_26_2022<- d_selct_1109_4_26_4_26_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1109_4_26_4_26_2022);
+
+data_selct_NA_1109_4_27_4_27_2022<- d_selct_1109_4_27_4_27_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1109_4_27_4_27_2022);
+
+data_selct_NA_1109_4_28_4_28_2022<- d_selct_1109_4_28_4_28_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1109_4_28_4_28_2022);
+
+data_selct_NA_1109_4_29_4_29_2022<- d_selct_1109_4_29_4_29_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1109_4_29_4_29_2022);
+
+
+
+data_selct_NA_1109_4_30_4_30_2022<- d_selct_1109_4_30_4_30_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1109_4_30_4_30_2022);
+
+```
+
+# aggregaate per 10 minuts 
+```{r}
+n<- 10;
+dataE10_1109_4_1_4_1_2022<- aggregate(data_selct_NA_1109_4_1_4_1_2022,list(rep(1:(nrow(data_selct_NA_1109_4_1_4_1_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1109_4_1_4_1_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1109_4_1_4_1_2022)
+
+dataE10_1109_4_2_4_2_2022<- aggregate(data_selct_NA_1109_4_2_4_2_2022,list(rep(1:(nrow(data_selct_NA_1109_4_2_4_2_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1109_4_2_4_2_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1109_4_2_4_2_2022)
+
+
+dataE10_1109_4_3_4_3_2022<- aggregate(data_selct_NA_1109_4_3_4_3_2022,list(rep(1:(nrow(data_selct_NA_1109_4_3_4_3_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1109_4_3_4_3_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1109_4_3_4_3_2022)
+
+
+dataE10_1109_4_4_4_4_2022<- aggregate(data_selct_NA_1109_4_4_4_4_2022,list(rep(1:(nrow(data_selct_NA_1109_4_4_4_4_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1109_4_4_4_4_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1109_4_4_4_4_2022)
+
+dataE10_1109_4_5_4_5_2022<- aggregate(data_selct_NA_1109_4_5_4_5_2022,list(rep(1:(nrow(data_selct_NA_1109_4_5_4_5_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1109_4_5_4_5_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1109_4_5_4_5_2022)
+
+dataE10_1109_4_6_4_6_2022<- aggregate(data_selct_NA_1109_4_6_4_6_2022,list(rep(1:(nrow(data_selct_NA_1109_4_6_4_6_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1109_4_6_4_6_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1109_4_6_4_6_2022)
+
+dataE10_1109_4_7_4_7_2022<- aggregate(data_selct_NA_1109_4_7_4_7_2022,list(rep(1:(nrow(data_selct_NA_1109_4_7_4_7_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1109_4_7_4_7_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1109_4_7_4_7_2022)
+
+dataE10_1109_4_8_4_8_2022<- aggregate(data_selct_NA_1109_4_8_4_8_2022,list(rep(1:(nrow(data_selct_NA_1109_4_8_4_8_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1109_4_8_4_8_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1109_4_8_4_8_2022)
+
+dataE10_1109_4_9_4_9_2022<- aggregate(data_selct_NA_1109_4_9_4_9_2022,list(rep(1:(nrow(data_selct_NA_1109_4_9_4_9_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1109_4_9_4_9_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1109_4_9_4_9_2022)
+
+dataE10_1109_4_10_4_10_2022<- aggregate(data_selct_NA_1109_4_10_4_10_2022,list(rep(1:(nrow(data_selct_NA_1109_4_10_4_10_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1109_4_10_4_10_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1109_4_10_4_10_2022)
+
+dataE10_1109_4_11_4_11_2022<- aggregate(data_selct_NA_1109_4_11_4_11_2022,list(rep(1:(nrow(data_selct_NA_1109_4_11_4_11_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1109_4_11_4_11_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1109_4_11_4_11_2022)
+
+dataE10_1109_4_12_4_12_2022<- aggregate(data_selct_NA_1109_4_12_4_12_2022,list(rep(1:(nrow(data_selct_NA_1109_4_12_4_12_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1109_4_12_4_12_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1109_4_12_4_12_2022)
+
+dataE10_1109_4_13_4_13_2022<- aggregate(data_selct_NA_1109_4_13_4_13_2022,list(rep(1:(nrow(data_selct_NA_1109_4_13_4_13_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1109_4_13_4_13_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1109_4_13_4_13_2022)
+
+dataE10_1109_4_14_4_14_2022<- aggregate(data_selct_NA_1109_4_14_4_14_2022,list(rep(1:(nrow(data_selct_NA_1109_4_14_4_14_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1109_4_14_4_14_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1109_4_14_4_14_2022)
+
+
+dataE10_1109_4_15_4_15_2022<- aggregate(data_selct_NA_1109_4_15_4_15_2022,list(rep(1:(nrow(data_selct_NA_1109_4_15_4_15_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1109_4_15_4_15_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1109_4_15_4_15_2022)
+
+dataE10_1109_4_16_4_16_2022<- aggregate(data_selct_NA_1109_4_16_4_16_2022,list(rep(1:(nrow(data_selct_NA_1109_4_16_4_16_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1109_4_16_4_16_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1109_4_16_4_16_2022)
+
+dataE10_1109_4_17_4_17_2022<- aggregate(data_selct_NA_1109_4_17_4_17_2022,list(rep(1:(nrow(data_selct_NA_1109_4_17_4_17_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1109_4_17_4_17_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1109_4_17_4_17_2022)
+
+dataE10_1109_4_18_4_18_2022<- aggregate(data_selct_NA_1109_4_18_4_18_2022,list(rep(1:(nrow(data_selct_NA_1109_4_18_4_18_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1109_4_18_4_18_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1109_4_18_4_18_2022)
+
+dataE10_1109_4_19_4_19_2022<- aggregate(data_selct_NA_1109_4_19_4_19_2022,list(rep(1:(nrow(data_selct_NA_1109_4_19_4_19_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1109_4_19_4_19_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1109_4_19_4_19_2022)
+
+dataE10_1109_4_20_4_20_2022<- aggregate(data_selct_NA_1109_4_20_4_20_2022,list(rep(1:(nrow(data_selct_NA_1109_4_20_4_20_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1109_4_20_4_20_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1109_4_20_4_20_2022)
+
+dataE10_1109_4_21_4_21_2022<- aggregate(data_selct_NA_1109_4_21_4_21_2022,list(rep(1:(nrow(data_selct_NA_1109_4_21_4_21_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1109_4_21_4_21_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1109_4_21_4_21_2022)
+
+dataE10_1109_4_22_4_22_2022<- aggregate(data_selct_NA_1109_4_22_4_22_2022,list(rep(1:(nrow(data_selct_NA_1109_4_22_4_22_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1109_4_22_4_22_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1109_4_22_4_22_2022)
+
+dataE10_1109_4_23_4_23_2022<- aggregate(data_selct_NA_1109_4_23_4_23_2022,list(rep(1:(nrow(data_selct_NA_1109_4_23_4_23_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1109_4_23_4_23_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1109_4_23_4_23_2022)
+
+dataE10_1109_4_24_4_24_2022<- aggregate(data_selct_NA_1109_4_24_4_24_2022,list(rep(1:(nrow(data_selct_NA_1109_4_24_4_24_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1109_4_24_4_24_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1109_4_24_4_24_2022)
+
+dataE10_1109_4_25_4_25_2022<- aggregate(data_selct_NA_1109_4_25_4_25_2022,list(rep(1:(nrow(data_selct_NA_1109_4_25_4_25_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1109_4_25_4_25_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1109_4_25_4_25_2022)
+
+dataE10_1109_4_26_4_26_2022<- aggregate(data_selct_NA_1109_4_26_4_26_2022,list(rep(1:(nrow(data_selct_NA_1109_4_26_4_26_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1109_4_26_4_26_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1109_4_26_4_26_2022)
+
+dataE10_1109_4_27_4_27_2022<- aggregate(data_selct_NA_1109_4_27_4_27_2022,list(rep(1:(nrow(data_selct_NA_1109_4_27_4_27_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1109_4_27_4_27_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1109_4_27_4_27_2022)
+
+dataE10_1109_4_28_4_28_2022<- aggregate(data_selct_NA_1109_4_28_4_28_2022,list(rep(1:(nrow(data_selct_NA_1109_4_28_4_28_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1109_4_28_4_28_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1109_4_28_4_28_2022)
+
+dataE10_1109_4_29_4_29_2022<- aggregate(data_selct_NA_1109_4_29_4_29_2022,list(rep(1:(nrow(data_selct_NA_1109_4_29_4_29_2022) %/%  n + 1), each = n, len = nrow(data_selct_NA_1109_4_29_4_29_2022))),mean, na.rm = TRUE)[-1];
+ summary(dataE10_1109_4_29_4_29_2022)
+
+dataE10_1109_4_30_4_30_2022<- aggregate(data_selct_NA_1109_4_30_4_30_2022,list(rep(1:(nrow(data_selct_NA_1109_4_30_4_30_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1109_4_30_4_30_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1109_4_30_4_30_2022)
+```
+
+
+#histegram for 1109
+```{r}
+ library(Hmisc)
+hist.data.frame(dataE10_1109_4_1_4_1_2022)
+hist.data.frame(dataE10_1109_4_2_4_2_2022)
+hist.data.frame(dataE10_1109_4_3_4_3_2022)
+hist.data.frame(dataE10_1109_4_4_4_4_2022)
+hist.data.frame(dataE10_1109_4_5_4_5_2022)
+hist.data.frame(dataE10_1109_4_6_4_6_2022)
+hist.data.frame(dataE10_1109_4_7_4_7_2022)
+hist.data.frame(dataE10_1109_4_8_4_8_2022)
+hist.data.frame(dataE10_1109_4_9_4_9_2022)
+hist.data.frame(dataE10_1109_4_10_4_10_2022)
+hist.data.frame(dataE10_1109_4_11_4_11_2022)
+hist.data.frame(dataE10_1109_4_12_4_12_2022)
+hist.data.frame(dataE10_1109_4_13_4_13_2022)
+hist.data.frame(dataE10_1109_4_14_4_14_2022)
+hist.data.frame(dataE10_1109_4_15_4_15_2022)
+hist.data.frame(dataE10_1109_4_16_4_16_2022)
+hist.data.frame(dataE10_1109_4_17_4_17_2022)
+hist.data.frame(dataE10_1109_4_18_4_18_2022)
+hist.data.frame(dataE10_1109_4_19_4_19_2022)
+hist.data.frame(dataE10_1109_4_26_4_26_2022)
+hist.data.frame(dataE10_1109_4_27_4_27_2022)
+hist.data.frame(dataE10_1109_4_28_4_28_2022)
+
+```
+
+#time serei for unit 1109
+```{r}
+plot.ts(dataE10_1109_4_1_4_1_2022)
+plot.ts(dataE10_1109_4_2_4_2_2022)
+plot.ts(dataE10_1109_4_3_4_3_2022)
+plot.ts(dataE10_1109_4_4_4_4_2022)
+plot.ts(dataE10_1109_4_5_4_5_2022)
+plot.ts(dataE10_1109_4_6_4_6_2022)
+plot.ts(dataE10_1109_4_7_4_7_2022)
+plot.ts(dataE10_1109_4_8_4_8_2022)
+plot.ts(dataE10_1109_4_9_4_9_2022)
+plot.ts(dataE10_1109_4_10_4_10_2022)
+plot.ts(dataE10_1109_4_11_4_11_2022)
+plot.ts(dataE10_1109_4_12_4_12_2022)
+plot.ts(dataE10_1109_4_13_4_13_2022)
+plot.ts(dataE10_1109_4_14_4_14_2022)
+plot.ts(dataE10_1109_4_15_4_15_2022)
+plot.ts(dataE10_1109_4_16_4_16_2022)
+plot.ts(dataE10_1109_4_17_4_17_2022)
+plot.ts(dataE10_1109_4_18_4_18_2022)
+plot.ts(dataE10_1109_4_19_4_19_2022)
+plot.ts(dataE10_1109_4_26_4_26_2022)
+plot.ts(dataE10_1109_4_27_4_27_2022)
+plot.ts(dataE10_1109_4_28_4_28_2022)
+
+```
+
+
+
+# histegram for 1169
+```{r}
+
+hist.data.frame(dataE10_1169_4_1_4_1_2022)
+hist.data.frame(dataE10_1169_4_2_4_2_2022)
+hist.data.frame(dataE10_1169_4_3_4_3_2022)
+hist.data.frame(dataE10_1169_4_4_4_4_2022)
+hist.data.frame(dataE10_1169_4_5_4_5_2022)
+hist.data.frame(dataE10_1169_4_6_4_6_2022)
+hist.data.frame(dataE10_1169_4_7_4_7_2022)
+hist.data.frame(dataE10_1169_4_8_4_8_2022)
+hist.data.frame(dataE10_1169_4_9_4_9_2022)
+hist.data.frame(dataE10_1169_4_10_4_10_2022)
+hist.data.frame(dataE10_1169_4_11_4_11_2022)
+hist.data.frame(dataE10_1169_4_12_4_12_2022)
+hist.data.frame(dataE10_1169_4_13_4_13_2022)
+```
+
+#time sereis for 1169
+```{r}
+plot.ts(dataE10_1169_4_1_4_1_2022)
+plot.ts(dataE10_1169_4_2_4_2_2022)
+plot.ts(dataE10_1169_4_3_4_3_2022)
+plot.ts(dataE10_1169_4_4_4_4_2022)
+plot.ts(dataE10_1169_4_5_4_5_2022)
+plot.ts(dataE10_1169_4_6_4_6_2022)
+plot.ts(dataE10_1169_4_7_4_7_2022)
+plot.ts(dataE10_1169_4_8_4_8_2022)
+plot.ts(dataE10_1169_4_9_4_9_2022)
+plot.ts(dataE10_1169_4_10_4_10_2022)
+plot.ts(dataE10_1169_4_11_4_11_2022)
+plot.ts(dataE10_1169_4_12_4_12_2022)
+plot.ts(dataE10_1169_4_13_4_13_2022)
+
+```
+
+
+
+# unit 110
+
+
+#Upload data for unit 1110
+```{r}
+d_1110_4_1_4_1_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1110_CSV/1110_4_1_4_1_2022.csv")
+d_1110_4_2_4_2_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1110_CSV/1110_4_2_4_2_2022.csv")
+d_1110_4_3_4_3_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1110_CSV/1110_4_3_4_3_2022.csv")
+d_1110_4_4_4_4_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1110_CSV/1110_4_4_4_4_2022.csv")
+d_1110_4_5_4_5_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1110_CSV/1110_4_5_4_5_2022.csv")
+d_1110_4_6_4_6_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1110_CSV/1110_4_6_4_6_2022.csv")
+d_1110_4_7_4_7_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1110_CSV/1110_4_7_4_7_2022.csv")
+d_1110_4_8_4_8_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1110_CSV/1110_4_8_4_8_2022.csv")
+d_1110_4_9_4_9_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1110_CSV/1110_4_9_4_9_2022.csv")
+d_1110_4_10_4_10_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1110_CSV/1110_4_10_4_10_2022.csv")
+d_1110_4_11_4_11_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1110_CSV/1110_4_11_4_11_2022.csv")
+d_1110_4_12_4_12_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1110_CSV/1110_4_12_4_12_2022.csv")
+d_1110_4_13_4_13_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1110_CSV/1110_4_13_4_13_2022.csv")
+d_1109_4_14_4_14_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1110_CSV/1110_4_14_4_14_2022.csv")
+d_1110_4_15_4_15_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1110_CSV/1110_4_15_4_15_2022.csv")
+d_1110_4_16_4_16_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1110_CSV/1110_4_16_4_16_2022.csv")
+d_1110_4_17_4_17_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1110_CSV/1110_4_17_4_17_2022.csv")
+d_1110_4_18_4_18_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1110_CSV/1110_4_18_4_18_2022.csv")
+d_1110_4_19_4_19_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1110_CSV/1110_4_19_4_19_2022.csv")
+d_1110_4_20_4_20_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1110_CSV/1110_4_20_4_20_2022.csv")
+d_1110_4_21_4_21_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1110_CSV/1110_4_21_4_21_2022.csv")
+d_1110_4_22_4_22_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1110_CSV/1110_4_22_4_22_2022.csv")
+d_1110_4_23_4_23_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1110_CSV/1110_4_23_4_23_2022.csv")
+d_1110_4_24_4_24_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1110_CSV/1110_4_24_4_24_2022.csv")
+d_1110_4_25_4_25_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1110_CSV/1110_4_25_4_25_2022.csv")
+d_1110_4_26_4_26_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1110_CSV/1110_4_26_4_26_2022.csv")
+d_1110_4_27_4_27_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1110_CSV/1110_4_27_4_27_2022.csv")
+d_1110_4_28_4_28_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1110_CSV/1110_4_28_4_28_2022.csv")
+
+d_1110_4_29_4_29_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1110_CSV/1110_4_29_4_29_2022.csv")
+d_1110_4_30_4_30_2022<- read.csv("/Users/mohammedbaaoum/Desktop/Summer2022/The Project /1110_CSV/1110_4_30_4_30_2022.csv")
+```
+
+
+
+#select only the variables we want from the data set. 
+
+```{r}
+#day1
+d_selct_1110_4_1_4_1_2022<- select(d_1110_4_1_4_1_2022, c(X1110.Battery.Voltage, X1110.Inverter.output.Total.power, X1110.Battery.temperature, X1110.Battery.output.power, X1110.Battery.output.current, X1110.PV1.input.power, X1110.PV2.input.power))
+
+#day2
+d_selct_1110_4_2_4_2_2022<- select(d_1110_4_2_4_2_2022, c(X1110.Battery.Voltage, X1110.Inverter.output.Total.power, X1110.Battery.temperature, X1110.Battery.output.power, X1110.Battery.output.current, X1110.PV1.input.power, X1110.PV2.input.power))
+
+#day3
+d_selct_1110_4_3_4_3_2022<- select(d_1110_4_3_4_3_2022, c(X1110.Battery.Voltage, X1110.Inverter.output.Total.power, X1110.Battery.temperature, X1110.Battery.output.power, X1110.Battery.output.current, X1110.PV1.input.power, X1110.PV2.input.power))
+
+#day4
+d_selct_1110_4_4_4_4_2022<- select(d_1110_4_4_4_4_2022, c(X1110.Battery.Voltage, X1110.Inverter.output.Total.power, X1110.Battery.temperature, X1110.Battery.output.power, X1110.Battery.output.current, X1110.PV1.input.power, X1110.PV2.input.power))
+
+
+#day5
+
+d_selct_1110_4_5_4_5_2022<- select(d_1110_4_5_4_5_2022,  c(X1110.Battery.Voltage, X1110.Inverter.output.Total.power, X1110.Battery.temperature, X1110.Battery.output.power, X1110.Battery.output.current, X1110.PV1.input.power, X1110.PV2.input.power))
+
+#day6
+d_selct_1110_4_6_4_6_2022<- select(d_1110_4_6_4_6_2022, c(X1110.Battery.Voltage, X1110.Inverter.output.Total.power, X1110.Battery.temperature, X1110.Battery.output.power, X1110.Battery.output.current, X1110.PV1.input.power, X1110.PV2.input.power))
+
+
+#day7
+d_selct_1110_4_7_4_7_2022<- select(d_1110_4_7_4_7_2022, c(X1110.Battery.Voltage, X1110.Inverter.output.Total.power, X1110.Battery.temperature, X1110.Battery.output.power, X1110.Battery.output.current, X1110.PV1.input.power, X1110.PV2.input.power))
+
+
+
+#day8
+d_selct_1110_4_8_4_8_2022<- select(d_1110_4_8_4_8_2022, c(X1110.Battery.Voltage, X1110.Inverter.output.Total.power, X1110.Battery.temperature, X1110.Battery.output.power, X1110.Battery.output.current, X1110.PV1.input.power, X1110.PV2.input.power))
+
+#day9
+d_selct_1110_4_9_4_9_2022<- select(d_1110_4_9_4_9_2022,  c(X1110.Battery.Voltage, X1110.Inverter.output.Total.power, X1110.Battery.temperature, X1110.Battery.output.power, X1110.Battery.output.current, X1110.PV1.input.power, X1110.PV2.input.power))
+#day10
+d_selct_1110_4_10_4_10_2022<- select(d_1110_4_10_4_10_2022,  c(X1110.Battery.Voltage, X1110.Inverter.output.Total.power, X1110.Battery.temperature, X1110.Battery.output.power, X1110.Battery.output.current, X1110.PV1.input.power, X1110.PV2.input.power))
+
+#day11
+d_selct_1110_4_11_4_11_2022<- select(d_1110_4_11_4_11_2022,  c(X1110.Battery.Voltage, X1110.Inverter.output.Total.power, X1110.Battery.temperature, X1110.Battery.output.power, X1110.Battery.output.current, X1110.PV1.input.power, X1110.PV2.input.power))
+
+
+#day12
+d_selct_1110_4_12_4_12_2022<- select(d_1110_4_12_4_12_2022, c(X1110.Battery.Voltage, X1110.Inverter.output.Total.power, X1110.Battery.temperature, X1110.Battery.output.power, X1110.Battery.output.current, X1110.PV1.input.power, X1110.PV2.input.power))
+
+
+#day13
+d_selct_1110_4_13_4_13_2022<- select(d_1110_4_13_4_13_2022,  c(X1110.Battery.Voltage, X1110.Inverter.output.Total.power, X1110.Battery.temperature, X1110.Battery.output.power, X1110.Battery.output.current, X1110.PV1.input.power, X1110.PV2.input.power))
+
+#day14
+d_selct_1110_4_14_4_14_2022<- select(d_1109_4_14_4_14_2022,  c(X1110.Battery.Voltage, X1110.Inverter.output.Total.power, X1110.Battery.temperature, X1110.Battery.output.power, X1110.Battery.output.current, X1110.PV1.input.power, X1110.PV2.input.power))
+
+
+#day15
+d_selct_1110_4_15_4_15_2022<- select(d_1110_4_15_4_15_2022,  c(X1110.Battery.Voltage, X1110.Inverter.output.Total.power, X1110.Battery.temperature, X1110.Battery.output.power, X1110.Battery.output.current, X1110.PV1.input.power, X1110.PV2.input.power))
+
+
+#day16
+d_selct_1110_4_16_4_16_2022<- select(d_1110_4_16_4_16_2022,  c(X1110.Battery.Voltage, X1110.Inverter.output.Total.power, X1110.Battery.temperature, X1110.Battery.output.power, X1110.Battery.output.current, X1110.PV1.input.power, X1110.PV2.input.power))
+
+
+#day17
+d_selct_1110_4_17_4_17_2022<- select(d_1110_4_17_4_17_2022,  c(X1110.Battery.Voltage, X1110.Inverter.output.Total.power, X1110.Battery.temperature, X1110.Battery.output.power, X1110.Battery.output.current, X1110.PV1.input.power, X1110.PV2.input.power))
+
+
+#day18
+d_selct_1110_4_18_4_18_2022<- select(d_1110_4_18_4_18_2022, c(X1110.Battery.Voltage, X1110.Inverter.output.Total.power, X1110.Battery.temperature, X1110.Battery.output.power, X1110.Battery.output.current, X1110.PV1.input.power, X1110.PV2.input.power))
+
+
+#day19
+d_selct_1110_4_19_4_19_2022<- select(d_1110_4_19_4_19_2022,  c(X1110.Battery.Voltage, X1110.Inverter.output.Total.power, X1110.Battery.temperature, X1110.Battery.output.power, X1110.Battery.output.current, X1110.PV1.input.power, X1110.PV2.input.power))
+
+#day20
+d_selct_1110_4_20_4_20_2022<- select(d_1110_4_20_4_20_2022,  c(X1110.Battery.Voltage, X1110.Inverter.output.Total.power, X1110.Battery.temperature, X1110.Battery.output.power, X1110.Battery.output.current, X1110.PV1.input.power, X1110.PV2.input.power))
+
+
+#day21
+d_selct_1110_4_21_4_21_2022<- select(d_1110_4_21_4_21_2022, c(X1110.Battery.Voltage, X1110.Inverter.output.Total.power, X1110.Battery.temperature, X1110.Battery.output.power, X1110.Battery.output.current, X1110.PV1.input.power, X1110.PV2.input.power))
+
+#day22
+d_selct_1110_4_22_4_22_2022<- select(d_1110_4_22_4_22_2022,  c(X1110.Battery.Voltage, X1110.Inverter.output.Total.power, X1110.Battery.temperature, X1110.Battery.output.power, X1110.Battery.output.current, X1110.PV1.input.power, X1110.PV2.input.power))
+
+
+#day23
+d_selct_1110_4_23_4_23_2022<- select(d_1110_4_23_4_23_2022, c(X1110.Battery.Voltage, X1110.Inverter.output.Total.power, X1110.Battery.temperature, X1110.Battery.output.power, X1110.Battery.output.current, X1110.PV1.input.power, X1110.PV2.input.power))
+
+#day24
+d_selct_1110_4_24_4_24_2022<- select(d_1110_4_24_4_24_2022,  c(X1110.Battery.Voltage, X1110.Inverter.output.Total.power, X1110.Battery.temperature, X1110.Battery.output.power, X1110.Battery.output.current, X1110.PV1.input.power, X1110.PV2.input.power))
+
+#day25
+d_selct_1110_4_25_4_25_2022<- select(d_1110_4_25_4_25_2022, c(X1110.Battery.Voltage, X1110.Inverter.output.Total.power, X1110.Battery.temperature, X1110.Battery.output.power, X1110.Battery.output.current, X1110.PV1.input.power, X1110.PV2.input.power))
+
+
+#day26
+d_selct_1110_4_26_4_26_2022<- select(d_1110_4_26_4_26_2022,  c(X1110.Battery.Voltage, X1110.Inverter.output.Total.power, X1110.Battery.temperature, X1110.Battery.output.power, X1110.Battery.output.current, X1110.PV1.input.power, X1110.PV2.input.power))
+
+
+#day27
+d_selct_1110_4_27_4_27_2022<- select(d_1110_4_27_4_27_2022,  c(X1110.Battery.Voltage, X1110.Inverter.output.Total.power, X1110.Battery.temperature, X1110.Battery.output.power, X1110.Battery.output.current, X1110.PV1.input.power, X1110.PV2.input.power))
+#day28
+d_selct_1110_4_28_4_28_2022<- select(d_1110_4_28_4_28_2022,  c(X1110.Battery.Voltage, X1110.Inverter.output.Total.power, X1110.Battery.temperature, X1110.Battery.output.power, X1110.Battery.output.current, X1110.PV1.input.power, X1110.PV2.input.power))
+
+#day29
+d_selct_1110_4_29_4_29_2022<- select(d_1110_4_29_4_29_2022,  c(X1110.Battery.Voltage, X1110.Inverter.output.Total.power, X1110.Battery.temperature, X1110.Battery.output.power, X1110.Battery.output.current, X1110.PV1.input.power, X1110.PV2.input.power))
+
+
+#day30
+d_selct_1110_4_30_4_30_2022<- select(d_1110_4_30_4_30_2022, c(X1110.Battery.Voltage, X1110.Inverter.output.Total.power, X1110.Battery.temperature, X1110.Battery.output.power, X1110.Battery.output.current, X1110.PV1.input.power, X1110.PV2.input.power))
+
+```
+
+
+
+# replace -8888 with NA. 
+#Vidualize data withoht missing variables.
+
+```{r}
+library(naniar)
+data_selct_NA_1110_4_1_4_1_2022<- d_selct_1110_4_1_4_1_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1110_4_1_4_1_2022);
+
+data_selct_NA_1110_4_2_4_2_2022<- d_selct_1110_4_2_4_2_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1110_4_2_4_2_2022);
+
+data_selct_NA_1110_4_3_4_3_2022<- d_selct_1110_4_3_4_3_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1110_4_3_4_3_2022);
+
+data_selct_NA_1110_4_4_4_4_2022<- d_selct_1110_4_4_4_4_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1110_4_4_4_4_2022);
+
+data_selct_NA_1110_4_5_4_5_2022<- d_selct_1110_4_5_4_5_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1110_4_4_4_4_2022);
+
+data_selct_NA_1110_4_6_4_6_2022<- d_selct_1110_4_6_4_6_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1110_4_6_4_6_2022);
+
+data_selct_NA_1110_4_7_4_7_2022<- d_selct_1110_4_7_4_7_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1110_4_7_4_7_2022);
+
+data_selct_NA_1110_4_8_4_8_2022<- d_selct_1110_4_8_4_8_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1110_4_8_4_8_2022);
+
+data_selct_NA_1110_4_9_4_9_2022<- d_selct_1110_4_9_4_9_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1110_4_9_4_9_2022);
+
+data_selct_NA_1110_4_10_4_10_2022<- d_selct_1110_4_10_4_10_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1110_4_10_4_10_2022);
+
+data_selct_NA_1110_4_11_4_11_2022<- d_selct_1110_4_11_4_11_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1110_4_11_4_11_2022);
+
+#continu 12
+data_selct_NA_1110_4_12_4_12_2022<- d_selct_1110_4_12_4_12_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1110_4_12_4_12_2022);
+
+data_selct_NA_1110_4_13_4_13_2022<- d_selct_1110_4_13_4_13_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1110_4_13_4_13_2022);
+
+data_selct_NA_1110_4_14_4_14_2022<- d_selct_1110_4_14_4_14_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1110_4_14_4_14_2022);
+
+data_selct_NA_1110_4_15_4_15_2022<- d_selct_1110_4_15_4_15_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1110_4_15_4_15_2022);
+
+data_selct_NA_1110_4_16_4_16_2022<- d_selct_1110_4_16_4_16_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1110_4_16_4_16_2022);
+
+data_selct_NA_1110_4_17_4_17_2022<- d_selct_1110_4_17_4_17_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1110_4_17_4_17_2022);
+
+data_selct_NA_1110_4_18_4_18_2022<- d_selct_1110_4_18_4_18_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1110_4_18_4_18_2022);
+
+data_selct_NA_1110_4_19_4_19_2022<- d_selct_1110_4_19_4_19_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1110_4_19_4_19_2022);
+
+data_selct_NA_1110_4_20_4_20_2022<- d_selct_1110_4_20_4_20_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1110_4_20_4_20_2022);
+
+data_selct_NA_1110_4_21_4_21_2022<- d_selct_1110_4_21_4_21_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1110_4_21_4_21_2022);
+
+data_selct_NA_1110_4_22_4_22_2022<- d_selct_1110_4_22_4_22_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1110_4_22_4_22_2022);
+
+data_selct_NA_1110_4_23_4_23_2022<- d_selct_1110_4_23_4_23_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1110_4_23_4_23_2022);
+
+data_selct_NA_1110_4_24_4_24_2022<- d_selct_1110_4_24_4_24_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1110_4_24_4_24_2022);
+
+
+data_selct_NA_1110_4_25_4_25_2022<- d_selct_1110_4_25_4_25_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1110_4_25_4_25_2022);
+
+data_selct_NA_1110_4_26_4_26_2022<- d_selct_1110_4_26_4_26_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1110_4_26_4_26_2022);
+
+data_selct_NA_1110_4_27_4_27_2022<- d_selct_1110_4_27_4_27_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1110_4_27_4_27_2022);
+
+data_selct_NA_1110_4_28_4_28_2022<- d_selct_1110_4_28_4_28_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1110_4_28_4_28_2022);
+
+data_selct_NA_1110_4_29_4_29_2022<- d_selct_1110_4_29_4_29_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1110_4_29_4_29_2022);
+
+data_selct_NA_1110_4_30_4_30_2022<- d_selct_1110_4_30_4_30_2022 %>% replace_with_na_all(condition = ~.x == -8888)
+summary(data_selct_NA_1110_4_30_4_30_2022);
+
+
+```
+
+# aggregaate per 10 minuts 
+```{r}
+n<- 10;
+dataE10_1110_4_1_4_1_2022<- aggregate(data_selct_NA_1110_4_1_4_1_2022,list(rep(1:(nrow(data_selct_NA_1110_4_1_4_1_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1110_4_1_4_1_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1110_4_1_4_1_2022)
+
+dataE10_1110_4_2_4_2_2022<- aggregate(data_selct_NA_1110_4_2_4_2_2022,list(rep(1:(nrow(data_selct_NA_1110_4_2_4_2_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1110_4_2_4_2_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1110_4_2_4_2_2022)
+
+
+dataE10_1110_4_3_4_3_2022<- aggregate(data_selct_NA_1110_4_3_4_3_2022,list(rep(1:(nrow(data_selct_NA_1110_4_3_4_3_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1110_4_3_4_3_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1110_4_3_4_3_2022)
+
+
+dataE10_1110_4_4_4_4_2022<- aggregate(data_selct_NA_1110_4_4_4_4_2022,list(rep(1:(nrow(data_selct_NA_1110_4_4_4_4_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1110_4_4_4_4_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1110_4_4_4_4_2022)
+
+dataE10_1110_4_5_4_5_2022<- aggregate(data_selct_NA_1110_4_5_4_5_2022,list(rep(1:(nrow(data_selct_NA_1110_4_5_4_5_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1110_4_5_4_5_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1110_4_5_4_5_2022)
+
+dataE10_1110_4_6_4_6_2022<- aggregate(data_selct_NA_1110_4_6_4_6_2022,list(rep(1:(nrow(data_selct_NA_1110_4_6_4_6_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1110_4_6_4_6_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1110_4_6_4_6_2022)
+
+dataE10_1110_4_7_4_7_2022<- aggregate(data_selct_NA_1110_4_7_4_7_2022,list(rep(1:(nrow(data_selct_NA_1110_4_7_4_7_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1110_4_7_4_7_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1110_4_7_4_7_2022)
+
+dataE10_1110_4_8_4_8_2022<- aggregate(data_selct_NA_1110_4_8_4_8_2022,list(rep(1:(nrow(data_selct_NA_1110_4_8_4_8_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1110_4_8_4_8_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1110_4_8_4_8_2022)
+
+dataE10_1110_4_9_4_9_2022<- aggregate(data_selct_NA_1110_4_9_4_9_2022,list(rep(1:(nrow(data_selct_NA_1110_4_9_4_9_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1110_4_9_4_9_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1110_4_9_4_9_2022)
+
+dataE10_1110_4_10_4_10_2022<- aggregate(data_selct_NA_1110_4_10_4_10_2022,list(rep(1:(nrow(data_selct_NA_1110_4_10_4_10_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1110_4_10_4_10_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1110_4_10_4_10_2022)
+
+dataE10_1110_4_11_4_11_2022<- aggregate(data_selct_NA_1110_4_11_4_11_2022,list(rep(1:(nrow(data_selct_NA_1110_4_11_4_11_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1110_4_11_4_11_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1110_4_11_4_11_2022)
+
+dataE10_1110_4_12_4_12_2022<- aggregate(data_selct_NA_1110_4_12_4_12_2022,list(rep(1:(nrow(data_selct_NA_1110_4_12_4_12_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1110_4_12_4_12_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1110_4_12_4_12_2022)
+
+dataE10_1110_4_13_4_13_2022<- aggregate(data_selct_NA_1110_4_13_4_13_2022,list(rep(1:(nrow(data_selct_NA_1110_4_13_4_13_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1110_4_13_4_13_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1110_4_13_4_13_2022)
+
+dataE10_1110_4_14_4_14_2022<- aggregate(data_selct_NA_1110_4_14_4_14_2022,list(rep(1:(nrow(data_selct_NA_1110_4_14_4_14_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1110_4_14_4_14_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1110_4_14_4_14_2022)
+
+
+dataE10_1110_4_15_4_15_2022<- aggregate(data_selct_NA_1110_4_15_4_15_2022,list(rep(1:(nrow(data_selct_NA_1110_4_15_4_15_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1110_4_15_4_15_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1110_4_15_4_15_2022)
+
+dataE10_1110_4_16_4_16_2022<- aggregate(data_selct_NA_1110_4_16_4_16_2022,list(rep(1:(nrow(data_selct_NA_1110_4_16_4_16_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1110_4_16_4_16_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1110_4_16_4_16_2022)
+
+dataE10_1110_4_17_4_17_2022<- aggregate(data_selct_NA_1110_4_17_4_17_2022,list(rep(1:(nrow(data_selct_NA_1110_4_17_4_17_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1110_4_17_4_17_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1110_4_17_4_17_2022)
+
+dataE10_1110_4_18_4_18_2022<- aggregate(data_selct_NA_1110_4_18_4_18_2022,list(rep(1:(nrow(data_selct_NA_1110_4_18_4_18_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1110_4_18_4_18_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1110_4_18_4_18_2022)
+
+dataE10_1110_4_19_4_19_2022<- aggregate(data_selct_NA_1110_4_19_4_19_2022,list(rep(1:(nrow(data_selct_NA_1110_4_19_4_19_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1110_4_19_4_19_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1110_4_19_4_19_2022)
+
+dataE10_1110_4_20_4_20_2022<- aggregate(data_selct_NA_1110_4_20_4_20_2022,list(rep(1:(nrow(data_selct_NA_1110_4_20_4_20_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1110_4_20_4_20_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1110_4_20_4_20_2022)
+
+dataE10_1110_4_21_4_21_2022<- aggregate(data_selct_NA_1110_4_21_4_21_2022,list(rep(1:(nrow(data_selct_NA_1110_4_21_4_21_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1110_4_21_4_21_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1110_4_21_4_21_2022)
+
+dataE10_1110_4_22_4_22_2022<- aggregate(data_selct_NA_1110_4_22_4_22_2022,list(rep(1:(nrow(data_selct_NA_1110_4_22_4_22_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1110_4_22_4_22_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1110_4_22_4_22_2022)
+
+dataE10_1110_4_23_4_23_2022<- aggregate(data_selct_NA_1110_4_23_4_23_2022,list(rep(1:(nrow(data_selct_NA_1110_4_23_4_23_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1110_4_23_4_23_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1110_4_23_4_23_2022)
+
+dataE10_1110_4_24_4_24_2022<- aggregate(data_selct_NA_1110_4_24_4_24_2022,list(rep(1:(nrow(data_selct_NA_1110_4_24_4_24_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1110_4_24_4_24_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1110_4_24_4_24_2022)
+
+dataE10_1110_4_25_4_25_2022<- aggregate(data_selct_NA_1110_4_25_4_25_2022,list(rep(1:(nrow(data_selct_NA_1110_4_25_4_25_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1110_4_25_4_25_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1110_4_25_4_25_2022)
+
+dataE10_1110_4_26_4_26_2022<- aggregate(data_selct_NA_1110_4_26_4_26_2022,list(rep(1:(nrow(data_selct_NA_1110_4_26_4_26_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1110_4_26_4_26_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1110_4_26_4_26_2022)
+
+dataE10_1110_4_27_4_27_2022<- aggregate(data_selct_NA_1110_4_27_4_27_2022,list(rep(1:(nrow(data_selct_NA_1110_4_27_4_27_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1110_4_27_4_27_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1110_4_27_4_27_2022)
+
+dataE10_1110_4_28_4_28_2022<- aggregate(data_selct_NA_1110_4_28_4_28_2022,list(rep(1:(nrow(data_selct_NA_1110_4_28_4_28_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1110_4_28_4_28_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1110_4_28_4_28_2022)
+
+dataE10_1110_4_29_4_29_2022<- aggregate(data_selct_NA_1110_4_29_4_29_2022,list(rep(1:(nrow(data_selct_NA_1110_4_29_4_29_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1110_4_29_4_29_2022))),mean, na.rm = TRUE)[-1];
+ summary(dataE10_1110_4_29_4_29_2022)
+
+dataE10_1110_4_30_4_30_2022<- aggregate(data_selct_NA_1110_4_30_4_30_2022,list(rep(1:(nrow(data_selct_NA_1110_4_30_4_30_2022) %/% n + 1), each = n, len = nrow(data_selct_NA_1110_4_30_4_30_2022))),mean, na.rm = TRUE)[-1];
+summary(dataE10_1110_4_30_4_30_2022)
+```
+
+
+#histegram for 1109
+```{r}
+ library(Hmisc)
+hist.data.frame(dataE10_1110_4_1_4_1_2022)
+hist.data.frame(dataE10_1110_4_2_4_2_2022)
+hist.data.frame(dataE10_1110_4_3_4_3_2022)
+hist.data.frame(dataE10_1110_4_4_4_4_2022)
+hist.data.frame(dataE10_1110_4_5_4_5_2022)
+hist.data.frame(dataE10_1110_4_6_4_6_2022)
+hist.data.frame(dataE10_1110_4_7_4_7_2022)
+hist.data.frame(dataE10_1110_4_8_4_8_2022)
+hist.data.frame(dataE10_1110_4_9_4_9_2022)
+hist.data.frame(dataE10_1110_4_10_4_10_2022)
+hist.data.frame(dataE10_1110_4_11_4_11_2022)
+hist.data.frame(dataE10_1110_4_12_4_12_2022)
+hist.data.frame(dataE10_1110_4_13_4_13_2022)
+hist.data.frame(dataE10_1110_4_14_4_14_2022)
+hist.data.frame(dataE10_1110_4_15_4_15_2022)
+hist.data.frame(dataE10_1110_4_16_4_16_2022)
+hist.data.frame(dataE10_1110_4_17_4_17_2022)
+hist.data.frame(dataE10_1110_4_18_4_18_2022)
+hist.data.frame(dataE10_1110_4_19_4_19_2022)
+hist.data.frame(dataE10_1110_4_26_4_26_2022)
+hist.data.frame(dataE10_1110_4_27_4_27_2022)
+hist.data.frame(dataE10_1110_4_28_4_28_2022)
+
+```
+
+#time serei for unit 1109
+```{r}
+plot.ts(dataE10_1110_4_1_4_1_2022)
+plot.ts(dataE10_1110_4_2_4_2_2022)
+plot.ts(dataE10_1110_4_3_4_3_2022)
+plot.ts(dataE10_1110_4_4_4_4_2022)
+plot.ts(dataE10_1110_4_5_4_5_2022)
+plot.ts(dataE10_1110_4_6_4_6_2022)
+plot.ts(dataE10_1110_4_7_4_7_2022)
+plot.ts(dataE10_1110_4_8_4_8_2022)
+plot.ts(dataE10_1110_4_9_4_9_2022)
+plot.ts(dataE10_1110_4_10_4_10_2022)
+plot.ts(dataE10_1110_4_11_4_11_2022)
+plot.ts(dataE10_1110_4_12_4_12_2022)
+plot.ts(dataE10_1110_4_13_4_13_2022)
+plot.ts(dataE10_1110_4_14_4_14_2022)
+plot.ts(dataE10_1110_4_15_4_15_2022)
+plot.ts(dataE10_1110_4_16_4_16_2022)
+plot.ts(dataE10_1110_4_17_4_17_2022)
+plot.ts(dataE10_1110_4_18_4_18_2022)
+plot.ts(dataE10_1110_4_19_4_19_2022)
+plot.ts(dataE10_1110_4_20_4_20_2022)
+plot.ts(dataE10_1110_4_21_4_21_2022)
+plot.ts(dataE10_1110_4_22_4_22_2022)
+plot.ts(dataE10_1110_4_23_4_23_2022)
+plot.ts(dataE10_1110_4_24_4_24_2022)
+plot.ts(dataE10_1110_4_25_4_25_2022)
+plot.ts(dataE10_1110_4_26_4_26_2022)
+plot.ts(dataE10_1110_4_27_4_27_2022)
+plot.ts(dataE10_1110_4_28_4_28_2022)
+plot.ts(dataE10_1110_4_29_4_29_2022)
+plot.ts(dataE10_1110_4_30_4_30_2022)
+```
+
+
+
+```{r}
+BV_1110_April_2022 <- c(dataE10_1110_4_1_4_1_2022$X1110.Battery.Voltage, dataE10_1110_4_2_4_2_2022$X1110.Battery.Voltage,dataE10_1110_4_3_4_3_2022$X1110.Battery.Voltage,dataE10_1110_4_4_4_4_2022$X1110.Battery.Voltage,dataE10_1110_4_5_4_5_2022$X1110.Battery.Voltage,dataE10_1110_4_6_4_6_2022$X1110.Battery.Voltage, dataE10_1110_4_7_4_7_2022$X1110.Battery.Voltage, dataE10_1110_4_8_4_8_2022$X1110.Battery.Voltage,dataE10_1110_4_9_4_9_2022$X1110.Battery.Voltage, dataE10_1110_4_10_4_10_2022$X1110.Battery.Voltage, dataE10_1110_4_11_4_11_2022$X1110.Battery.Voltage,dataE10_1110_4_12_4_12_2022$X1110.Battery.Voltage, dataE10_1110_4_13_4_13_2022$X1110.Battery.Voltage, dataE10_1110_4_14_4_14_2022$X1110.Battery.Voltage, dataE10_1110_4_15_4_15_2022$X1110.Battery.Voltage, dataE10_1110_4_16_4_16_2022$X1110.Battery.Voltage, dataE10_1110_4_17_4_17_2022$X1110.Battery.Voltage,dataE10_1110_4_18_4_18_2022$X1110.Battery.Voltage,dataE10_1110_4_19_4_19_2022$X1110.Battery.Voltage,dataE10_1110_4_20_4_20_2022$X1110.Battery.Voltage,dataE10_1110_4_21_4_21_2022$X1110.Battery.Voltage,dataE10_1110_4_22_4_22_2022$X1110.Battery.Voltage,dataE10_1110_4_23_4_23_2022$X1110.Battery.Voltage,dataE10_1110_4_24_4_24_2022$X1110.Battery.Voltage,dataE10_1110_4_25_4_25_2022$X1110.Battery.Voltage,dataE10_1110_4_26_4_26_2022$X1110.Battery.Voltage, dataE10_1110_4_27_4_27_2022$X1110.Battery.Voltage,dataE10_1110_4_28_4_28_2022$X1110.Battery.Voltage,dataE10_1110_4_29_4_29_2022$X1110.Battery.Voltage, dataE10_1110_4_30_4_30_2022$X1110.Battery.Voltage )
+
+
+```
+
+
+
+```{r}
+BV_1109_April_2022 <- c(dataE10_1109_4_1_4_1_2022$X1109.Battery.Voltage, dataE10_1109_4_2_4_2_2022$X1109.Battery.Voltage,dataE10_1109_4_3_4_3_2022$X1109.Battery.Voltage,dataE10_1109_4_4_4_4_2022$X1109.Battery.Voltage,dataE10_1109_4_5_4_5_2022$X1109.Battery.Voltage,dataE10_1109_4_6_4_6_2022$X1109.Battery.Voltage, dataE10_1109_4_7_4_7_2022$X1109.Battery.Voltage, dataE10_1109_4_8_4_8_2022$X1109.Battery.Voltage,dataE10_1109_4_9_4_9_2022$X1109.Battery.Voltage, dataE10_1109_4_10_4_10_2022$X1109.Battery.Voltage, dataE10_1109_4_11_4_11_2022$X1109.Battery.Voltage,dataE10_1109_4_12_4_12_2022$X1109.Battery.Voltage, dataE10_1109_4_13_4_13_2022$X1109.Battery.Voltage, dataE10_1109_4_14_4_14_2022$X1109.Battery.Voltage, dataE10_1109_4_15_4_15_2022$X1109.Battery.Voltage, dataE10_1109_4_16_4_16_2022$X1109.Battery.Voltage, dataE10_1109_4_17_4_17_2022$X1109.Battery.Voltage,dataE10_1109_4_18_4_18_2022$X1109.Battery.Voltage,dataE10_1109_4_19_4_19_2022$X1109.Battery.Voltage,dataE10_1109_4_20_4_20_2022$X1109.Battery.Voltage,dataE10_1109_4_21_4_21_2022$X1109.Battery.Voltage,dataE10_1109_4_22_4_22_2022$X1109.Battery.Voltage,dataE10_1109_4_23_4_23_2022$X1109.Battery.Voltage,dataE10_1109_4_24_4_24_2022$X1109.Battery.Voltage, dataE10_1109_4_25_4_25_2022$X1109.Battery.Voltage,dataE10_1109_4_26_4_26_2022$X1109.Battery.Voltage, dataE10_1109_4_27_4_27_2022$X1109.Battery.Voltage,dataE10_1109_4_28_4_28_2022$X1109.Battery.Voltage,dataE10_1109_4_29_4_29_2022$X1109.Battery.Voltage, dataE10_1109_4_30_4_30_2022$X1109.Battery.Voltage )
+
+```
+
+
+
+```{r}
+BV_1029_April_2022 <- c(dataE10_1029_4_1_4_1_2022$X1029.Battery.Voltage, dataE10_1029_4_2_4_2_2022$X1029.Battery.Voltage,dataE10_1029_4_3_4_3_2022$X1029.Battery.Voltage,dataE10_1029_4_4_4_4_2022$X1029.Battery.Voltage,dataE10_1029_4_5_4_5_2022$X1029.Battery.Voltage,dataE10_1029_4_6_4_6_2022$X1029.Battery.Voltage, dataE10_1029_4_7_4_7_2022$X1029.Battery.Voltage, dataE10_1029_4_8_4_8_2022$X1029.Battery.Voltage,dataE10_1029_4_9_4_9_2022$X1029.Battery.Voltage, dataE10_1029_4_10_4_10_2022$X1029.Battery.Voltage, dataE10_1029_4_11_4_11_2022$X1029.Battery.Voltage,dataE10_1029_4_12_4_12_2022$X1029.Battery.Voltage, dataE10_1029_4_13_4_13_2022$X1029.Battery.Voltage, dataE10_1029_4_14_4_14_2022$X1029.Battery.Voltage, dataE10_1029_4_15_4_15_2022$X1029.Battery.Voltage, dataE10_1029_4_16_4_16_2022$X1029.Battery.Voltage, dataE10_1029_4_17_4_17_2022$X1029.Battery.Voltage,dataE10_1029_4_18_4_18_2022$X1029.Battery.Voltage,dataE10_1029_4_19_4_19_2022$X1029.Battery.Voltage,dataE10_1029_4_20_4_20_2022$X1029.Battery.Voltage,dataE10_1029_4_21_4_21_2022$X1029.Battery.Voltage,dataE10_1029_4_22_4_22_2022$X1029.Battery.Voltage,dataE10_1029_4_23_4_23_2022$X1029.Battery.Voltage,dataE10_1029_4_24_4_24_2022$X1029.Battery.Voltage, dataE10_1029_4_25_4_25_2022$X1029.Battery.Voltage,dataE10_1029_4_26_4_26_2022$X1029.Battery.Voltage, dataE10_1029_4_27_4_27_2022$X1029.Battery.Voltage,dataE10_1029_4_28_4_28_2022$X1029.Battery.Voltage,dataE10_1029_4_29_4_29_2022$X1029.Battery.Voltage, dataE10_1029_4_30_4_30_2022$X1029.Battery.Voltage )
+```
+
+
+
+Histogram for 30 days of three units : 
+```{r}
+hist(BV_1110_April_2022)
+hist(BV_1109_April_2022)
+hist(BV_1029_April_2022)
+```
+
